@@ -4,7 +4,8 @@
   "description": "Counter example for redux",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register"
   },
   "repository": {
     "type": "git",
@@ -30,11 +31,16 @@
     "babel-preset-es2015-loose": "^6.1.3",
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "eslint": "^2.12.0",
+    "expect": "^1.20.1",
+    "mocha": "^2.5.3",
     "node-libs-browser": "^0.5.2",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",
     "webpack": "^1.9.11",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-server": "^1.9.0",
+    "cross-env": "^1.0.7"
   }
 }
+
