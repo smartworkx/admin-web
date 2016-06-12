@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: yes
+  vars:
+    nginx_remove_default_vhost: true
+    nginx_vhosts:
+      - listen: "80 default_server"
+        root: "/data/www/admin"
+        index: "index.html"
+  tasks:
+    - file: state=directory group="www-data" owner="www-data" path=/data/www/admin
+    - file: state=directory group="www-data" owner="www-data" path=/data/www/admin/js
+  roles:
+    - role: geerlingguy.nginx
+  post_tasks:
+    - copy: src=../index.html dest=/data/www/admin/index.html
+    - copy: src=../dist/bundle.js dest=/data/www/admin/js/bundle.js
+

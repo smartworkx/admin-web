@@ -1,11 +1,12 @@
 {
-  "name": "counter-redux",
+  "name": "admin-app",
   "version": "0.0.0",
-  "description": "Counter example for redux",
+  "description": "Admin application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register"
+    "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register",
+    "package": "node scripts/package.js"
   },
   "repository": {
     "type": "git",
