@@ -21,7 +21,7 @@ export function fetchPosts(period) {
     headers.append("Access-Control-Allow-Origin", "http://localhost:8080");
     return dispatch => {
         //dispatch(requestPosts(quarter))
-        return fetch(`http://localhost:8080/vatReports?year=${period.year}&quarter=${period.quarter}`,
+        return fetch(application_config.ADMIN_API_ENDPOINT + `/vatReports?year=${period.year}&quarter=${period.quarter}`,
             {
                 headers: headers
             }

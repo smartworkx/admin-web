@@ -1,6 +1,14 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var config = require('./../webpack.config.js');
+
+config.plugins.push(
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development"),
+      }
+    })
+);
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
