@@ -1,0 +1,6 @@
+[webservers]
+192.168.33.10
+
+[webservers:vars]
+admin_api_endpoint=192.168.33.11
+

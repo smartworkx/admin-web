@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: webservers
   become: yes
   vars:
     nginx_remove_default_vhost: true
@@ -15,5 +15,6 @@
     - role: geerlingguy.nginx
   post_tasks:
     - copy: src=../index.html dest=/data/www/admin/index.html
+    - template: src=files/config.js.j2 dest=/data/www/admin/js/config.js
     - copy: src=../dist/bundle.js dest=/data/www/admin/js/bundle.js
 
