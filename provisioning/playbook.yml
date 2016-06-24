@@ -1,6 +1,6 @@
 ---
 
-- hosts: webservers
+- hosts: web-servers
   become: yes
   vars:
     nginx_remove_default_vhost: true
