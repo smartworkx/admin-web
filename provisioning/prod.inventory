@@ -1,0 +1,6 @@
+[web-servers]
+192.168.1.10
+
+[web-servers:vars]
+admin_api_endpoint=localhost:8080
+
