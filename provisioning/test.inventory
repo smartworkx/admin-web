@@ -1,0 +1,5 @@
+[web-servers]
+52.49.211.193
+
+[web-servers:vars]
+admin_api_endpoint=52.49.211.193

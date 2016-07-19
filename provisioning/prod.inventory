@@ -1,6 +1,6 @@
 [web-servers]
-52.208.119.99
+52.17.34.185
 
 [web-servers:vars]
-admin_api_endpoint=ec2-52-208-119-99.eu-west-1.compute.amazonaws.com
+admin_api_endpoint=52.17.34.185
 
