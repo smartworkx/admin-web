@@ -11,7 +11,7 @@ node {
     stage 'Stage Build'
     sh 'npm install'
     sh 'npm test'
-    sh 'run package'
+    sh 'npm run package'
 
 
 }
