@@ -1,6 +1,6 @@
 [web-servers]
-192.168.1.10
+52.208.119.99
 
 [web-servers:vars]
-admin_api_endpoint=localhost:8080
+admin_api_endpoint=ec2-52-208-119-99.eu-west-1.compute.amazonaws.com
 

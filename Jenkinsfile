@@ -24,7 +24,7 @@ node {
     ansiblePlaybook(
             playbook: 'provisioning/playbook.yml',
             inventory: 'provisioning/prod.inventory ',
-            extras: '-u pi',
+            extras: '-u admin',
             credentialsId: 'bec43108-1819-465a-bf56-91324f852fc1'
     )
 }
