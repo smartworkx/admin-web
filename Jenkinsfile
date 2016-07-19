@@ -16,8 +16,25 @@ node {
 
 }
 
+stage 'Deploy test'
+timeout(time: 1, unit: 'DAYS') {
+    input 'Do you want to install on test?'
+}
+
+node {
+    sh 'echo deploying on test'
+    ansiblePlaybook(
+            playbook: 'provisioning/playbook.yml',
+            inventory: 'provisioning/test.inventory ',
+            extras: '-u admin',
+            credentialsId: 'bec43108-1819-465a-bf56-91324f852fc1'
+    )
+}
+
 stage 'Deploy prod'
-input 'Do you want to install on prod?'
+timeout(time: 1, unit: 'DAYS') {
+    input 'Do you want to install on prod?'
+}
 
 node {
     sh 'echo deploying on prod'
