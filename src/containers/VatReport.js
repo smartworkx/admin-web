@@ -1,12 +1,13 @@
 /**
  * Created by joris on 31-5-16.
  */
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
+import {fetchPosts, handleChangePeriod} from "../actions/VatReportActions";
+import VatReportContent from "../components/VatReportContent";
+import PeriodSelector from "../components/PeriodSelector";
 
-import VatReportContent from './VatReportContent';
-import PeriodSelector from './PeriodSelector';
-
-export default class VatReport extends Component {
+class VatReport extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -35,3 +36,8 @@ export default class VatReport extends Component {
         );
     }
 }
+
+export default connect(
+    state => ({ report: state.vatReport }),
+    { fetchPosts, handleChangePeriod }
+)(VatReport)

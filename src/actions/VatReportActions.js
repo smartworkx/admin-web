@@ -1,11 +1,11 @@
 /**
  * Created by joris on 31-5-16.
  */
-import fetch from 'isomorphic-fetch'
+import fetch from "isomorphic-fetch";
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const CHANGE_PERIOD = 'CHANGE_PERIOD'
+export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const CHANGE_PERIOD = 'CHANGE_PERIOD';
 
 function receivePosts(quarter, json) {
     return {
@@ -20,7 +20,6 @@ export function fetchPosts(period) {
     var headers = new Headers();
     headers.append("Access-Control-Allow-Origin", "http://localhost:8080");
     return dispatch => {
-        //dispatch(requestPosts(quarter))
         return fetch(application_config.ADMIN_API_ENDPOINT + `/vatReports?year=${period.year}&quarter=${period.quarter}`,
             {
                 headers: headers

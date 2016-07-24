@@ -1,32 +1,26 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import VatReport from '../components/VatReport';
+import React, {Component} from "react";
+import {Home, Main} from "../components";
+import Journalize from "./Journalize";
+import VatReport from "./VatReport";
+import {Router, Route, IndexRoute, browserHistory} from "react-router";
+import {syncHistoryWithStore} from "react-router-redux";
 
-import * as VatReportActions from '../actions/VatReportActions';
 
-class App extends Component {
+export default class App extends Component {
+
     render() {
-        const {vatReport, dispatch} = this.props;
+        const {store} = this.props;
+
+        const history = syncHistoryWithStore(browserHistory, store);
+
         return (
-            <VatReport report={vatReport}
-                {...bindActionCreators(VatReportActions, dispatch)} />
+            <Router history={history}>
+                <Route path="/" component={Main}>
+                    <IndexRoute component={Home}/>
+                    <Route path="vatReport" component={VatReport}/>
+                    <Route path="journalize" component={Journalize}/>
+                </Route>
+            </Router>
         );
     }
 }
-
-/*
- *<Counter counter={counter}
- {...bindActionCreators(CounterActions, dispatch)} />
- */
-
-function mapStateToProps(state) {
-    const {vatReport} = state;
-
-
-    return {
-        vatReport
-    }
-}
-
-export default connect(mapStateToProps)(App);
