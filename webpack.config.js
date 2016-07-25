@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var globalizePlugin = require('globalize-webpack-plugin');
 
 module.exports = {
     devtool: 'eval',
