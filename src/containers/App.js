@@ -1,9 +1,10 @@
-import React, {Component} from "react";
-import {Home, Main} from "../components";
-import Journalize from "./Journalize";
-import VatReport from "./VatReport";
-import {Router, Route, IndexRoute, browserHistory} from "react-router";
-import {syncHistoryWithStore} from "react-router-redux";
+import React, {Component} from 'react';
+import {Home, Main} from '../components';
+import Journalize from './Journalize';
+import VatReport from './VatReport';
+import ImportFfs from './ImportFfs'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 
 export default class App extends Component {
@@ -15,10 +16,11 @@ export default class App extends Component {
 
         return (
             <Router history={history}>
-                <Route path="/" component={Main}>
+                <Route path='/' component={Main}>
                     <IndexRoute component={Home}/>
-                    <Route path="vatReport" component={VatReport}/>
-                    <Route path="journalize" component={Journalize}/>
+                    <Route path='vatReport' component={VatReport}/>
+                    <Route path='journalize' component={Journalize}/>
+                    <Route path='importFfs' component={ImportFfs}/>
                 </Route>
             </Router>
         );

@@ -18,7 +18,8 @@ export default class Record extends Component {
                 <FormGroup controlId="ledger">
                     <ControlLabel>Ledger</ControlLabel>
                     <Field name={`${record}.ledger`} component={ props =>
-                        <DropdownList className="form-control" defaultValue={ledgers[0].id} data={ledgers} valueField="id"
+                        <DropdownList className="form-control" defaultValue={ledgers.length > 0 ? ledgers[0].id : null}
+                                      data={ledgers} valueField="id"
                                       textField="name" onChange={value => props.input.onChange(value.id)}
                                       value={props.input.value}  />}
                     />

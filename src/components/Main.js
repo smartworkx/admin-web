@@ -15,6 +15,7 @@ export default function Main({children}) {
                     <Nav>
                         <NavItem eventKey={1} href="#"><Link to="/vatReport">Vat report</Link></NavItem>
                         <NavItem eventKey={2} href="#"><Link to="/journalize">Journalize</Link></NavItem>
+                        <NavItem eventKey={3} href="#"><Link to="/importFfs">Import financial facts</Link></NavItem>
                     </Nav>
                 </Navbar>
             </header>

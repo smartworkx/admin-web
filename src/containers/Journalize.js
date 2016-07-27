@@ -1,11 +1,12 @@
-import React, {Component} from "react";
-import {FormGroup, ControlLabel, FormControl, Button} from "react-bootstrap";
-import DatePicker from "react-bootstrap-date-picker";
-import {Records} from "../components";
-import {reduxForm, Field, FieldArray} from "redux-form";
-import {submit} from "../actions/JournalizeActions";
-import {fetchLedgers} from "../actions/LedgerActions";
-import {connect} from "react-redux";
+import React, {Component} from 'react';
+import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
+import DatePicker from 'react-bootstrap-date-picker';
+import {Records} from '../components';
+import {reduxForm, Field, FieldArray} from 'redux-form';
+import {submit} from '../actions/JournalizeActions';
+import {fetchLedgers} from '../actions/LedgerActions';
+import {connect} from 'react-redux';
+import {deparam} from 'node-qs-serialization'
 
 
 class Journalize extends Component {
@@ -13,7 +14,7 @@ class Journalize extends Component {
         super(props);
     };
 
-    componentDidMount() {
+    componentWillMount() {
         const {fetchLedgers} = this.props;
         fetchLedgers();
     }
@@ -29,7 +30,7 @@ class Journalize extends Component {
                 >
                     <ControlLabel>Description</ControlLabel>
                     <Field className="form-control"
-                           component="input" type="ẗext"
+                           component="input" type="text"
                            placeholder="Enter description"
                            name="description"
                     />
@@ -82,6 +83,9 @@ const journalizeForm = reduxForm({
 })(Journalize);
 
 export default connect(
-    state => ({ledgers: state.ledgers.rows}),
+    (state, props) => ({
+        ledgers: state.ledgers.rows,
+        initialValues: deparam(props.location.search.substr(1))
+    }),
     {fetchLedgers}
 )(journalizeForm)
