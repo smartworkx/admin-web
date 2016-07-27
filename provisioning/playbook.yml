@@ -8,7 +8,9 @@
       - listen: "80 default_server"
         root: "/data/www/admin"
         index: "index.html"
-  tasks:
+  pre_tasks:
+    - shell: 'apt-get clean'
+    - shell: 'apt-get update'
     - file: state=directory group="www-data" owner="www-data" path=/data/www/admin
     - file: state=directory group="www-data" owner="www-data" path=/data/www/admin/js
   roles:
