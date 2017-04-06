@@ -1,9 +1,0 @@
-[submodule "src/main/assets/features"]
-	path = src/main/assets/features
-	url = https://github.com/joris77/admin-features.git
-[submodule "src/features"]
-	path = src/features
-	url = https://github.com/joris77/admin-features.git
-[submodule "features"]
-	path = features
-	url = https://github.com/joris77/admin-features.git
