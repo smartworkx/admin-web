@@ -11,6 +11,8 @@ export const Header = () => (
       </IndexLink>
       {' · '}
       <Link to='/bank-file-uploads' activeClassName='route--active'>Bank file uploads</Link>
+      {' · '}
+      <Link to='/financial-facts' activeClassName='route--active'>Financial facts</Link>
     </Navigation>
   </AppBar>
 )

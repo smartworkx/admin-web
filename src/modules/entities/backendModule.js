@@ -6,7 +6,7 @@ export const createBackendModule = (path) => {
   const fetchActionCreator = () => {
     return (dispatch) => dispatch({
       types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
-      callAPI: (headers) => fetch('/api/' + path, {headers})
+      callAPI: (headers) => fetch('http://localhost:8080/' + path, {headers})
     })
   }
 

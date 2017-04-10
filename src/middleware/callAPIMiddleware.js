@@ -70,10 +70,11 @@ export default function callAPIMiddlewareFactory() {
         type: requestType
       })
 
-      const headers = {}
+      const headers = new Headers()
+      headers.append("Accept", "application/hal+json")
       return callAPI(headers).then(
         response => {
-          var contentType = response.headers.get('content-type')
+          const contentType = response.headers.get('content-type')
           if (contentType &&
             (contentType.indexOf('application/json') !== -1 ||
             contentType.indexOf('application/hal+json') !== -1)) {
