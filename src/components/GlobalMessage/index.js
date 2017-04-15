@@ -1,5 +1,5 @@
-import GlobalMessage, {showMessage, showErrorMessage} from './GlobalMessageContainer'
+import GlobalMessage, {globalMessageReducer, showErrorMessage, showMessage} from './GlobalMessageContainer'
 
-export {showErrorMessage, showMessage}
+export {showErrorMessage, showMessage, globalMessageReducer}
 
 export default GlobalMessage

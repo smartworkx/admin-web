@@ -1,17 +1,21 @@
 import React from 'react'
-import {Chip} from 'react-toolbox'
+import {Snackbar} from 'react-toolbox'
 import classes from './GlobalMessage.scss'
 
-function GlobalMessage (props) {
+function GlobalMessage(props) {
   return (
     <div className={classes.globalMessage}>
       {(() => {
         if (props.message) {
-          return <div>
-            <Chip onDeleteClick={props.hideMessage} deletable>
-              <h4>{props.message}</h4>
-            </Chip>
-          </div>
+          return <Snackbar
+            action='Dismiss'
+            active={props.message}
+            label={props.message}
+            timeout={5000}
+            onClick={props.hideMessage}
+            onTimeout={props.hideMessage}
+            type='cancel'
+          />
         }
       })()}
     </div>

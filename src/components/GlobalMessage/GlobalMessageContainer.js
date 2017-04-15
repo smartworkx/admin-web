@@ -69,7 +69,7 @@ const initialState = {
   style: 'info'
 }
 
-export function GlobalMessageReducer (state = initialState, action) {
+export const globalMessageReducer = (state = initialState, action) => {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
