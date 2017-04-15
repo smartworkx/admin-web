@@ -63,6 +63,13 @@ export const createBackendModule = (path) => {
   }
 
   return {
+    ACTION_HANDLERS,
+    SUCCESS_FETCH,
+    START_FETCH,
+    ERROR_FETCH,
+    SUCCESS_CREATE,
+    START_CREATE,
+    ERROR_CREATE,
     reducer,
     fetchActionCreator,
     createActionCreator

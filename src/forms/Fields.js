@@ -9,8 +9,13 @@ export const debitCredit = ({input, label}) => (
   <Dropdown label={label} {...input} source={[{label: 'Credit', value: 'CREDIT'}, {label: 'Debit', value: 'DEBIT'}]} />
 )
 
-export const autocomplete = ({input, label, source, multiple}) => (
-  <Autocomplete label={label} {...input} source={source} direction='down' multiple={multiple} />)
+export const autocomplete = ({input, label, source, multiple}) => {
+  const onChange = (value) => {
+    return input.onChange(value)
+  }
+  return (
+    <Autocomplete label={label} {...input} source={source} direction='down' multiple={multiple} onChange={onChange} />)
+}
 
 export const nameArrayToObject = (data) => {
   return data.reduce((acc, cur) => {
@@ -18,4 +23,6 @@ export const nameArrayToObject = (data) => {
     return acc
   }, {})
 }
+
+
 

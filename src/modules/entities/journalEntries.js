@@ -1,8 +1,9 @@
 import {createBackendModule} from './backendModule'
 
-const module = createBackendModule('ledgers')
+const module = createBackendModule('journal-entries')
 
 export const fetch = module.fetchActionCreator
-export const {SUCCESS_FETCH} = module
+
+export const create = module.createActionCreator
 
 export default module.reducer

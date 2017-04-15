@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { reducer as form } from 'redux-form'
 import locationReducer from './location'
 import entities from 'modules/entities'
+import autocomplete from 'modules/autocomplete'
 import {globalMessageReducer as globalMessage} from 'components/GlobalMessage'
 
 export const makeRootReducer = (asyncReducers) => {
@@ -10,6 +11,7 @@ export const makeRootReducer = (asyncReducers) => {
     location: locationReducer,
     form,
     globalMessage,
+    autocomplete,
     ...asyncReducers
   })
 }

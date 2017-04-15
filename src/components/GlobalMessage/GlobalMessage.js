@@ -9,7 +9,7 @@ function GlobalMessage(props) {
         if (props.message) {
           return <Snackbar
             action='Dismiss'
-            active={props.message}
+            active={props.message !== null}
             label={props.message}
             timeout={5000}
             onClick={props.hideMessage}
