@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {compose} from 'redux'
 import {connect} from 'react-redux'
 import {Field, FieldArray, reduxForm} from 'redux-form'
 import {amount, autocomplete, debitCredit, nameCodeArrayToObject} from './Fields'
-import {Button} from 'react-toolbox'
+import {Button, FontIcon} from 'react-toolbox'
 import {getEntities} from 'modules/entities'
 import {getAutocomplete} from 'modules/autocomplete'
 import {create} from 'modules/entities/journalEntries'
@@ -14,68 +15,61 @@ const validate = (values) => {
   return errors;
 }
 
-const renderRecords = ({fields, meta: {touched, error, submitFailed},ledgers}) => (
-  <ul>
-    <li>
-      <Button onClick={() => fields.push({})}>Add Record</Button>
+const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers}) => (
+  <div>
+    <div>
+      <Button onClick={() => fields.push({})}> <FontIcon value='add' /></Button>
       {(touched || submitFailed) && error && <span>{error}</span>}
-    </li>
-    {fields.map((record, index) =>
-      <li key={index}>
-        <Button
-          onClick={() => fields.remove(index)} >Remove</Button>
-        <h4>Record #{index + 1}</h4>
-        <Field
-          name={`${record}.ledger`}
-          component={autocomplete}
-          label="Ledger"
-          source={ledgers}
-          multiple={false}
-        />
-        <Field
-          name={`${record}.debitCredit`}
-          component={debitCredit}
-          label="Debit/credit" />
-        <Field
-          name={`${record}.amount`}
-          component={amount}
-          label="Amount" />
-      </li>
-    )}
-  </ul>
+    </div>
+    <div className={classes.recordsList}>
+      {fields.map((record, index) =>
+        <div key={index}>
+          <Button
+            onClick={() => fields.remove(index)}> <FontIcon value='remove' /></Button>
+          <div className={classes.journalEntryField}>
+            <Field name={`${record}.ledger`}
+                   component={autocomplete}
+                   label="Ledger"
+                   source={ledgers}
+                   multiple={false}
+            />
+          </div>
+          <div className={classes.journalEntryField}>
+            <Field
+              name={`${record}.debitCredit`}
+              component={debitCredit}
+              label="Debit/credit" />
+          </div>
+          <div className={classes.journalEntryField}>
+            <Field
+              name={`${record}.amount`}
+              component={amount}
+              label="Amount" />
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
 )
 
-export class JournalEntryForm extends Component {
-  constructor(props) {
-    super(props)
-    const {fetchLedgers} = props
-    fetchLedgers()
-  }
-
-  render() {
-    const {ledgers, handleSubmit, submitting, reset} = this.props
-    return (
-      <div className={classes.journalEntryForm}>
-        <form onSubmit={handleSubmit}>
-          <FieldArray name='records' component={renderRecords} ledgers={ledgers} />
-          <Button type="submit" disabled={submitting}>Submit</Button>
-          <Button type="button" disabled={submitting} onClick={reset}>Clear Values</Button>
-        </form>
-      </div>
-    )
-  }
+const JournalEntryForm = (props) => {
+  const {ledgers, handleSubmit, submitting, reset} = props
+  return (
+    <div className={classes.journalEntryForm}>
+      <form onSubmit={handleSubmit}>
+        <FieldArray name='records' component={renderRecords} ledgers={ledgers} />
+        <Button type="submit" disabled={submitting}>Submit</Button>
+        <Button type="button" disabled={submitting} onClick={reset}>Clear</Button>
+      </form>
+    </div>
+  )
 }
 
-const JournalEntryReduxForm = reduxForm({
-  form: 'JournalEntryForm',
-  validate
-})(JournalEntryForm);
 
 const onSubmit = (values) => {
   return create({
     values: {
-      ...values,
-      financialFactId: 50
+      ...values
     }
   })
 }
@@ -91,4 +85,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JournalEntryReduxForm)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  reduxForm({
+    form: 'JournalEntryForm',
+    validate
+  }))(JournalEntryForm)

@@ -16,5 +16,5 @@ export default combineReducers({
 
 export const getEntities = (state, entityName) => {
   let data = state.entities[entityName].data
-  return data._embedded ? data._embedded[camelCaseToDashes(entityName)] : []
+  return data._embedded ? data._embedded[entityName] || data._embedded[camelCaseToDashes(entityName)] : []
 }
