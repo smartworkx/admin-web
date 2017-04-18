@@ -15,7 +15,7 @@ const validate = (values) => {
   return errors;
 }
 
-const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers}) => (
+const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers, financialFactId}) => (
   <div>
     <div>
       <Button onClick={() => fields.push({})}> <FontIcon value='add' /></Button>

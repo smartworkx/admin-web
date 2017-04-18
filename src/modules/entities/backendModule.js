@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import {removeTime} from 'modules/date'
 
 export const createBackendModule = (path) => {
@@ -9,14 +10,14 @@ export const createBackendModule = (path) => {
   const ERROR_CREATE = '@@' + path + '/ERROR_CREATE'
 
   const fetchActionCreator = () => {
-    return (dispatch) => dispatch({
+    return {
       types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
       callAPI: (headers) => fetch('http://localhost:8080/' + path, {headers})
-    })
+    }
   }
 
   const createActionCreator = ({values, successMessage}) => {
-    return (dispatch) => dispatch({
+    return {
       types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
       callAPI: (headers) => {
         headers.append('content-type','application/json')
@@ -29,7 +30,7 @@ export const createBackendModule = (path) => {
         })
       },
       successMessage: successMessage || 'Successfully created'
-    })
+    }
   }
 
   const convert = (values) => {

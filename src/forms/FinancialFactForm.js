@@ -5,7 +5,7 @@ import {amount, autocomplete, date, debitCredit, nameArrayToObject, text} from '
 import {Button} from 'react-toolbox'
 import {getEntities} from 'modules/entities'
 import {fetch as fetchOrigins} from 'modules/entities/origins'
-import {create} from 'modules/entities/financialFacts'
+import {create, fetchJournalEntryProposals} from 'modules/entities/financialFacts'
 import classes from './FinancialFactForm.scss'
 
 const validate = (values) => {
