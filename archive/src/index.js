@@ -11,7 +11,7 @@ const store = configureStore();
 render(
   <AppContainer
     component={Root}
-    props={{ store }}
+    props={{store}}
   />,
   document.getElementById('root')
 );
@@ -21,7 +21,7 @@ if (module.hot) {
     render(
       <AppContainer
         component={require('./containers/Root').default}
-        props={{ store }}
+        props={{store}}
       />,
       document.getElementById('root')
     );

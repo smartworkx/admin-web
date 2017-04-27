@@ -50,7 +50,7 @@ export default function callAPIMiddlewareFactory() {
           })
         } else {
           let errorMessage
-          if (json && json.message && response.status !== 500) {
+          if (json && json.message) {
             errorMessage = json.message
           } else {
             errorMessage = 'An error occurred.'
