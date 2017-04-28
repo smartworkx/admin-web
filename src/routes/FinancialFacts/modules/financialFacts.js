@@ -1,4 +1,9 @@
 
+const financialFactProposal = ({financialFact, type}) => {
+
+}
+
+
 export const actions = {
 }
 

@@ -6,7 +6,7 @@ import {amount, autocomplete, debitCredit, nameCodeArrayToObject} from './Fields
 import {Button, FontIcon} from 'react-toolbox'
 import {getEntities} from 'modules/entities'
 import {getAutocomplete} from 'modules/autocomplete'
-import {create} from 'modules/entities/journalEntries'
+import {create} from 'modules/entities/journalEntryCreatedEvents'
 import classes from './JournalEntryForm.scss'
 import {fetch as fetchLedgers} from 'modules/entities/ledgers'
 

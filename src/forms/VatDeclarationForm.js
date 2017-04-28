@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import {Field, reduxForm} from 'redux-form'
 import {Button} from 'react-toolbox'
 import {getEntities} from 'modules/entities'
-import {create, fetch} from 'modules/entities/vatDeclarations'
-import classes from './FinancialFactForm.scss'
+import {create} from 'modules/entities/vatDeclarationCreatedEvents'
+import classes from './VatDeclarationForm.scss'
 import {dropdown} from './Fields'
 import lodash from 'lodash'
 
@@ -22,7 +22,6 @@ export class VatDeclarationForm extends Component {
   render() {
     const {
       handleSubmit,
-      reset,
       pristine,
       submitting,
     } = this.props;
@@ -30,10 +29,13 @@ export class VatDeclarationForm extends Component {
     return (
       <div className={classes.form}>
         <form onSubmit={handleSubmit}>
-          <Field name='year' label='Year' component={dropdown} source={lodash.range(2017,2101)}/>
-          <Field name='quarter' label='Quarter' component={dropdown} source={lodash.range(1,5)}/>
-          <Button type="submit" disabled={pristine || submitting}>Submit</Button>
-          <Button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>
+          <div className={classes.field}>
+            <Field name='year' label='Year' component={dropdown} source={lodash.range(2017, 2101)} />
+          </div>
+          <div className={classes.field}>
+            <Field name='quarter' label='Quarter' component={dropdown} source={lodash.range(1, 5)} />
+          </div>
+          <Button type="submit" disabled={pristine || submitting} className={classes.button}>Create</Button>
         </form>
       </div>
     );
@@ -51,8 +53,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  return {}
 }
 
 

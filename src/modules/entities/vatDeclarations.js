@@ -1,11 +1,17 @@
 import {createBackendModule} from './backendModule'
+import {SUCCESS_CREATE as VAT_DECLARATION_SUCCESS_CREATE} from './vatDeclarationCreatedEvents'
 
-const module = createBackendModule('vat-declarations')
+const module = createBackendModule('vatDeclarations')
 
 export const fetch = module.fetchActionCreator
 
-export const create = module.createActionCreator
+module.ACTION_HANDLERS[VAT_DECLARATION_SUCCESS_CREATE] = (state, action) => {
+  const vatDeclaration = action.json
 
-export const SUCCESS_CREATE = module.SUCCESS_CREATE
+  return {
+    ...state,
+    data: [vatDeclaration, ...state.data]
+  }
+}
 
 export default module.reducer

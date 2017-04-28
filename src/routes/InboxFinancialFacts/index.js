@@ -8,16 +8,16 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const container = require('./containers/FinancialFactsContainer').default
-      const reducer = require('./modules/financialFacts').default
+      const container = require('./containers/InboxFinancialFactsContainer').default
+      const reducer = require('./modules/inboxFinancialFacts').default
 
       /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'financialFacts', reducer })
+      injectReducer(store, { key: 'inboxFinancialFacts', reducer })
 
       /*  Return getComponent   */
       cb(null, container)
 
     /* Webpack named bundle   */
-    }, 'financialFacts')
+    }, 'inboxFinancialFacts')
   }
 })

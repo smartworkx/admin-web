@@ -6,13 +6,9 @@ import { IndexLink, Link } from 'react-router'
 export const Header = () => (
   <AppBar title='Admin' leftIcon='menu'>
     <Navigation type='horizontal'>
-      <IndexLink to='/' activeClassName='route--active'>
-        Home
-      </IndexLink>
+      <IndexLink to='/' activeClassName='route--active'>Inbox</IndexLink>
       {' · '}
       <Link to='/bank-file-uploads' activeClassName='route--active'>Bank file uploads</Link>
-      {' · '}
-      <Link to='/financial-facts' activeClassName='route--active'>Inbox</Link>
       {' · '}
       <Link to='/vat-declarations' activeClassName='route--active'>Value added tax declarations</Link>
     </Navigation>

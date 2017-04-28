@@ -1,5 +1,5 @@
 import {createBackendModule} from './backendModule'
-import {SUCCESS_CREATE as JOURNAL_ENTRY_SUCCESS_CREATE} from './journalEntries'
+import {SUCCESS_CREATE as JOURNAL_ENTRY_SUCCESS_CREATE} from './journalEntryCreatedEvents'
 import {BASE_PATH, objectToQueryParams} from 'modules/http'
 
 const path = 'journal-entry-proposals'
@@ -17,7 +17,7 @@ export const fetchJournalEntryProposals = (params) => {
   }
 }
 
-const module = createBackendModule('inbox-financial-facts')
+const module = createBackendModule('inboxFinancialFacts')
 
 export const fetchInboxFinancialFacts = module.fetchActionCreator
 
@@ -26,17 +26,12 @@ module.ACTION_HANDLERS[JOURNAL_ENTRY_SUCCESS_CREATE] = (state, action) => {
 
   return {
     ...state,
-    data: {
-      ...state.data,
-      _embedded: {
-        inboxFinancialFacts: state.data._embedded.inboxFinancialFacts.filter(iff => iff.financialFact.id !== financialFactId)
-      }
-    }
+    data: state.data.filter(iff => iff.financialFact.id !== financialFactId)
   }
 }
 
 module.ACTION_HANDLERS[SUCCESS_FETCH_JEP] = (state, action) => {
-  const inboxFinancialFacts = state.data._embedded.inboxFinancialFacts
+  const inboxFinancialFacts = state.data
   const index = inboxFinancialFacts.findIndex((iff => iff.financialFact.id === action.financialFactId))
   let inboxFinancialFactToReplace = inboxFinancialFacts[index]
   const newIffs = [...inboxFinancialFacts.slice(0, index),
@@ -44,12 +39,7 @@ module.ACTION_HANDLERS[SUCCESS_FETCH_JEP] = (state, action) => {
     ...inboxFinancialFacts.slice(index + 1)]
   return {
     ...state,
-    data: {
-      ...state.data,
-      _embedded: {
-        inboxFinancialFacts: newIffs
-      }
-    }
+    data: newIffs
   }
 }
 

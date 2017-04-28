@@ -1,13 +1,16 @@
 import 'whatwg-fetch'
 import {removeTime} from 'modules/date'
+import {camelCaseToDashes} from 'modules/strings'
 
-export const createBackendModule = (path) => {
-  const SUCCESS_FETCH = '@@' + path + '/SUCCESS_FETCH'
-  const START_FETCH = '@@' + path + '/START_FETCH'
-  const ERROR_FETCH = '@@' + path + '/ERROR_FETCH'
-  const SUCCESS_CREATE = '@@' + path + '/SUCCESS_CREATE'
-  const START_CREATE = '@@' + path + '/START_CREATE'
-  const ERROR_CREATE = '@@' + path + '/ERROR_CREATE'
+export const createBackendModule = (entityName) => {
+  const SUCCESS_FETCH = '@@' + entityName + '/SUCCESS_FETCH'
+  const START_FETCH = '@@' + entityName + '/START_FETCH'
+  const ERROR_FETCH = '@@' + entityName + '/ERROR_FETCH'
+  const SUCCESS_CREATE = '@@' + entityName + '/SUCCESS_CREATE'
+  const START_CREATE = '@@' + entityName + '/START_CREATE'
+  const ERROR_CREATE = '@@' + entityName + '/ERROR_CREATE'
+
+  const path = camelCaseToDashes(entityName)
 
   const fetchActionCreator = () => {
     return {
@@ -20,7 +23,7 @@ export const createBackendModule = (path) => {
     return {
       types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
       callAPI: (headers) => {
-        headers.append('content-type','application/json')
+        headers.append('content-type', 'application/json')
         const convertedValues = convert(values)
         const body = JSON.stringify(convertedValues)
         return fetch('http://localhost:8080/' + path, {
@@ -38,17 +41,22 @@ export const createBackendModule = (path) => {
     for (const key in values) {
       if (key.toLowerCase().endsWith('date')) {
         newValues[key] = removeTime(values[key])
-      }else{
+      } else {
         newValues[key] = values[key]
       }
     }
     return newValues
   }
 
+  const getDataFromHalResponse = (json, entityName) => {
+    return json._embedded ? json._embedded[entityName] || json._embedded[camelCaseToDashes(entityName)] : []
+  }
+
   const ACTION_HANDLERS = {
     [SUCCESS_FETCH]: (state, action) => {
       return {
-        data: action.json,
+        json: action.json,
+        data: getDataFromHalResponse(action.json, entityName),
         initialized: true
       }
     }
@@ -78,6 +86,5 @@ export const createBackendModule = (path) => {
 }
 
 export const getEntities = (state, entityName) => {
-  let data = state.entities[entityName].data
-  return data._embedded ? data._embedded[entityName] || data._embedded[camelCaseToDashes(entityName)] : []
+  return state.entities[entityName].data
 }

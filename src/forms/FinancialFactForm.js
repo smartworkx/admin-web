@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import {compose} from 'redux'
 import {connect} from 'react-redux'
 import {Field, reduxForm} from 'redux-form'
 import {amount, autocomplete, date, debitCredit, nameArrayToObject, text} from './Fields'
@@ -9,8 +10,8 @@ import {create, fetchJournalEntryProposals} from 'modules/entities/financialFact
 import classes from './FinancialFactForm.scss'
 
 const validate = (values) => {
-  const errors = {};
-  return errors;
+  const errors = {}
+  return errors
 };
 
 const propTypes = {
@@ -18,9 +19,9 @@ const propTypes = {
 };
 
 export class FinancialFactForm extends Component {
-  constructor(props) {
-    super(props)
-    const {fetchOrigins} = props
+
+  componentWillMount() {
+    const {fetchOrigins} = this.props
     fetchOrigins()
   }
 
@@ -31,7 +32,7 @@ export class FinancialFactForm extends Component {
       pristine,
       submitting,
       origins
-    } = this.props;
+    } = this.props
 
     return (
       <div className={classes.financialFactForm}>
@@ -39,21 +40,14 @@ export class FinancialFactForm extends Component {
           <Field name='valueDate' label='Value date' component={date} />
           <Field name='amount' label='Amount' component={amount} />
           <Field name='description' label='Description' component={text} />
-          <Field name='debitCredit' label='Debit/credit' component={debitCredit} />
           <Field name='origin' label='Origin' component={autocomplete} source={origins} multiple={false} />
-          <Button type="submit" disabled={pristine || submitting}>Submit</Button>
+          <Button type="submit" disabled={submitting}>Submit</Button>
           <Button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>
         </form>
       </div>
-    );
+    )
   }
 }
-
-FinancialFactForm.propTypes = propTypes;
-const FinancialFactFormReduxForm = reduxForm({
-  form: 'FinancialFactForm',
-  validate
-})(FinancialFactForm)
 
 const onSubmit = (values) => {
   return create({
@@ -68,8 +62,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    origins: nameArrayToObject(getEntities(state, 'origins'))
+    origins: nameArrayToObject(getEntities(state, 'origins')),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FinancialFactFormReduxForm)
+export default compose(connect(mapStateToProps, mapDispatchToProps), reduxForm({
+  form: 'FinancialFactForm',
+  validate
+}))(FinancialFactForm)

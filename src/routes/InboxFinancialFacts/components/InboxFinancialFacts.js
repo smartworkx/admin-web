@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
+import {Button, Table, TableCell, TableHead, TableRow, Dialog} from 'react-toolbox'
 import JournalEntryForm from 'forms/JournalEntryForm'
 import classes from './InboxFinancialFacts.scss'
+import FinancialFactForm from 'forms/FinancialFactForm'
 
 class InboxFinancialFacts extends Component {
 
@@ -14,7 +15,21 @@ class InboxFinancialFacts extends Component {
 
   render() {
     return <div>
-      <h1>Inbox</h1>
+      <div className={classes.titleLine}>
+        <h1 className={classes.pageTitle}>Inbox</h1>
+        <div className={classes.buttonPanel}>
+          <Button
+            onClick={() => this.props.openFinancialFactDialog({})}>Create financial fact</Button>
+        </div>
+      </div>
+      <Dialog
+        active={this.props.active}
+        onEscKeyDown={this.props.cancelFinancialFactCreation}
+        onOverlayClick={this.handleToggle}
+        title='Create financial fact'
+      >
+        <FinancialFactForm initialValues={this.props.financialFactProposal} />
+      </Dialog>
       <Table selectable={false}>
         <TableHead>
           <TableCell></TableCell>
@@ -32,9 +47,9 @@ class InboxFinancialFacts extends Component {
             >
               <TableCell>
                 <Button
-                  onClick={() => this.props.financialFactProposal({
+                  onClick={() => this.props.openFinancialFactDialog({
                     financialFact: financialFact,
-                    type: 'INCOMING_INVOICE',
+                    origin: 'INCOMING_INVOICE',
                   })}>Incoming invoice</Button>
                 <Button
                   onClick={() => this.props.fetchJournalEntryProposals({

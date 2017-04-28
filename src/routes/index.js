@@ -1,16 +1,14 @@
 import CoreLayout from '../layouts/CoreLayout'
-import Home from './Home'
 import BankFileUploadsRoute from './BankFileUploads'
-import FinancialFactsRoute from './FinancialFacts'
+import InboxFinancialFactsRoute from './InboxFinancialFacts'
 import ValueAddedTax from './VatDeclarations'
 
 export const createRoutes = (store) => ({
   path: '/',
   component: CoreLayout,
-  indexRoute: Home,
+  indexRoute: InboxFinancialFactsRoute(store),
   childRoutes: [
     BankFileUploadsRoute(store),
-    FinancialFactsRoute(store),
     ValueAddedTax(store)
   ]
 })

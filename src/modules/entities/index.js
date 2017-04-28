@@ -3,6 +3,8 @@ import {getEntities} from './backendModule'
 import {camelCaseToDashes} from 'modules/strings'
 import financialFacts from './financialFacts'
 import journalEntries from './journalEntries'
+import journalEntryCreatedEvents from './journalEntryCreatedEvents'
+import vatDeclarationCreatedEvents from './vatDeclarationCreatedEvents'
 import vatDeclarations from './vatDeclarations'
 import inboxFinancialFacts from './inboxFinancialFacts'
 import ledgers from './ledgers'
@@ -16,7 +18,9 @@ export default combineReducers({
   journalEntries,
   vatDeclarations,
   ledgers,
-  origins
+  origins,
+  journalEntryCreatedEvents,
+  vatDeclarationCreatedEvents
 })
 
 
