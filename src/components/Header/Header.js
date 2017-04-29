@@ -11,6 +11,8 @@ export const Header = () => (
       <Link to='/bank-file-uploads' activeClassName='route--active'>Bank file uploads</Link>
       {' · '}
       <Link to='/vat-declarations' activeClassName='route--active'>Value added tax declarations</Link>
+      {' · '}
+      <Link to='/journal' activeClassName='route--active'>Journal</Link>
     </Navigation>
   </AppBar>
 )
