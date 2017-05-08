@@ -17,17 +17,19 @@ class Journal extends Component {
       <Table selectable={false}>
         <TableHead>
           <TableCell>Value date</TableCell>
-          <TableCell>Description</TableCell>
+          <TableCell>Ledger</TableCell>
           <TableCell>Debit</TableCell>
           <TableCell>Credit</TableCell>
         </TableHead>
-        {this.props.entries.map(item => {
+        {this.props.journalLines.map(item => {
           return (
             <TableRow
               key={item.id}
             >
               <TableCell>{item.valueDate}</TableCell>
-              <TableCell></TableCell>
+              <TableCell>{item.ledger}</TableCell>
+              <TableCell>{item.debitAmount}</TableCell>
+              <TableCell>{item.creditAmount}</TableCell>
             </TableRow>
           )
         })}

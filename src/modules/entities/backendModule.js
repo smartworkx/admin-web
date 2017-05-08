@@ -13,26 +13,30 @@ export const createBackendModule = (entityName) => {
   const path = camelCaseToDashes(entityName)
 
   const fetchActionCreator = () => {
-    return {
-      types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
-      callAPI: (headers) => fetch('http://localhost:8080/' + path, {headers})
+    return (dispatch) => {
+      return dispatch({
+        types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
+        callAPI: (headers) => fetch('http://localhost:8080/' + path, {headers})
+      })
     }
   }
 
   const createActionCreator = ({values, successMessage}) => {
-    return {
-      types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
-      callAPI: (headers) => {
-        headers.append('content-type', 'application/json')
-        const convertedValues = convert(values)
-        const body = JSON.stringify(convertedValues)
-        return fetch('http://localhost:8080/' + path, {
-          headers,
-          method: 'POST',
-          body: body
-        })
-      },
-      successMessage: successMessage || 'Successfully created'
+    return (dispatch) => {
+      return dispatch({
+        types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
+        callAPI: (headers) => {
+          headers.append('content-type', 'application/json')
+          const convertedValues = convert(values)
+          const body = JSON.stringify(convertedValues)
+          return fetch('http://localhost:8080/' + path, {
+            headers,
+            method: 'POST',
+            body: body
+          })
+        },
+        successMessage: successMessage || 'Successfully created'
+      })
     }
   }
 
@@ -48,9 +52,7 @@ export const createBackendModule = (entityName) => {
     return newValues
   }
 
-  const getDataFromHalResponse = (json, entityName) => {
-    return json._embedded ? json._embedded[entityName] || json._embedded[camelCaseToDashes(entityName)] : []
-  }
+
 
   const ACTION_HANDLERS = {
     [SUCCESS_FETCH]: (state, action) => {
@@ -87,4 +89,8 @@ export const createBackendModule = (entityName) => {
 
 export const getEntities = (state, entityName) => {
   return state.entities[entityName].data
+}
+
+export const getDataFromHalResponse = (json, entityName) => {
+  return json._embedded ? json._embedded[entityName] || json._embedded[camelCaseToDashes(entityName)] : []
 }

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {getEntities} from './backendModule'
+import {getEntities, getDataFromHalResponse} from './backendModule'
 import {camelCaseToDashes} from 'modules/strings'
 import financialFacts from './financialFacts'
 import journalEntries from './journalEntries'
@@ -10,7 +10,7 @@ import inboxFinancialFacts from './inboxFinancialFacts'
 import ledgers from './ledgers'
 import origins from './origins'
 
-export {getEntities}
+export {getEntities, getDataFromHalResponse}
 
 export default combineReducers({
   inboxFinancialFacts,

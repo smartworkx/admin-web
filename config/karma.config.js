@@ -18,11 +18,11 @@ const karmaConfig = {
   frameworks: ['mocha'],
   reporters: ['mocha'],
   preprocessors: {
-    [`${project.dir_test}/test-bundler.js`]: ['webpack']
+    [`${project.dir_test}/test-bundler.js`]: ['webpack','sourcemap']
   },
   browsers: ['PhantomJS'],
   webpack: {
-    devtool: 'cheap-module-source-map',
+    devtool: 'inline-source-map',
     resolve: Object.assign({}, webpackConfig.resolve, {
       alias: Object.assign({}, webpackConfig.resolve.alias, {
         sinon: 'sinon/pkg/sinon.js'
