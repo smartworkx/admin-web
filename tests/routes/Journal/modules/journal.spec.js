@@ -6,7 +6,7 @@ describe('Journal module', () => {
   beforeEach(() => {
   })
 
-  it.only('Aggregates ledgers and journals', () => {
+  it('Aggregates ledgers and journals', () => {
     const action = {
       type: CREATE_JOURNAL,
       ledgers: [ {

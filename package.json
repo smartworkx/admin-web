@@ -138,6 +138,7 @@
     "mocha": "^3.0.1",
     "node-sass": "^4.5.2",
     "nodemon": "^1.10.2",
+    "phantomjs-polyfill-find": "github:ptim/phantomjs-polyfill-find",
     "phantomjs-prebuilt": "^2.1.12",
     "postcss-cssnext": "^2.10.0",
     "postcss-each": "^0.9.3",

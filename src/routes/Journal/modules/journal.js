@@ -1,4 +1,4 @@
-import _ from 'lodash/'
+import _ from 'lodash'
 import {fetch} from 'modules/entities/journalEntries'
 import {fetchLedgers} from 'modules/entities/ledgers'
 import {getDataFromHalResponse} from 'modules/entities'
