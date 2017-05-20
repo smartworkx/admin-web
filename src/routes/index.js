@@ -3,6 +3,7 @@ import BankFileUploadsRoute from './BankFileUploads'
 import InboxFinancialFactsRoute from './InboxFinancialFacts'
 import ValueAddedTax from './VatDeclarations'
 import Journal from './Journal'
+import Ledger from './Ledger'
 
 export const createRoutes = (store) => ({
   path: '/',
@@ -11,7 +12,8 @@ export const createRoutes = (store) => ({
   childRoutes: [
     BankFileUploadsRoute(store),
     ValueAddedTax(store),
-    Journal(store)
+    Journal(store),
+    Ledger(store)
   ]
 })
 

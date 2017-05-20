@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
 import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
-import classes from './Journal.scss'
+import classes from './Ledger.scss'
 
-class Journal extends Component {
+class Ledger extends Component {
 
   constructor(props) {
     super(props)
-    const {createJournal} = props
-    createJournal()
+    const {createLedger} = props
   }
 
   render() {
     return <div>
-      <h1>Journal</h1>
+      <h1>Ledger</h1>
       <Table selectable={false}>
         <TableHead>
           <TableCell>Value date</TableCell>
@@ -20,7 +19,7 @@ class Journal extends Component {
           <TableCell>Debit</TableCell>
           <TableCell>Credit</TableCell>
         </TableHead>
-        {this.props.journalLines.map(item => {
+        {this.props.ledgerLines.map(item => {
           return (
             <TableRow
               key={item.id}
@@ -37,4 +36,4 @@ class Journal extends Component {
   }
 }
 
-export default Journal
+export default Ledger
