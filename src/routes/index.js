@@ -4,6 +4,8 @@ import InboxFinancialFactsRoute from './InboxFinancialFacts'
 import ValueAddedTax from './VatDeclarations'
 import Journal from './Journal'
 import Ledger from './Ledger'
+import Balances from './Balances'
+import BalanceDetails from './Balances/routes/Details'
 
 export const createRoutes = (store) => ({
   path: '/',
@@ -13,7 +15,9 @@ export const createRoutes = (store) => ({
     BankFileUploadsRoute(store),
     ValueAddedTax(store),
     Journal(store),
-    Ledger(store)
+    Ledger(store),
+    Balances(store),
+    BalanceDetails(store)
   ]
 })
 

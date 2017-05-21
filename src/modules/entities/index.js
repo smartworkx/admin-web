@@ -9,6 +9,7 @@ import vatDeclarations from './vatDeclarations'
 import inboxFinancialFacts from './inboxFinancialFacts'
 import ledgers from './ledgers'
 import origins from './origins'
+import balances from './balances'
 
 export {getEntities, getDataFromHalResponse}
 
@@ -20,7 +21,8 @@ export default combineReducers({
   ledgers,
   origins,
   journalEntryCreatedEvents,
-  vatDeclarationCreatedEvents
+  vatDeclarationCreatedEvents,
+  balances
 })
 
 

@@ -15,6 +15,8 @@ export const Header = () => (
       <Link to='/journal' activeClassName='route--active'>Journal</Link>
       {' · '}
       <Link to='/ledger' activeClassName='route--active'>Ledger</Link>
+      {' · '}
+      <Link to='/balances' activeClassName='route--active'>Balance</Link>
     </Navigation>
   </AppBar>
 )

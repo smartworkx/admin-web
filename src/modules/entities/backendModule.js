@@ -21,9 +21,9 @@ export const createBackendModule = (entityName) => {
     }
   }
 
-  const createActionCreator = ({values, successMessage}) => {
+  const createActionCreator = ({values, successMessage, onDispatchFinished}) => {
     return (dispatch) => {
-      return dispatch({
+      let promise = dispatch({
         types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
         callAPI: (headers) => {
           headers.append('content-type', 'application/json')
@@ -37,6 +37,10 @@ export const createBackendModule = (entityName) => {
         },
         successMessage: successMessage || 'Successfully created'
       })
+      if (onDispatchFinished) {
+        promise.then(onDispatchFinished)
+      }
+      return promise
     }
   }
 
@@ -51,7 +55,6 @@ export const createBackendModule = (entityName) => {
     }
     return newValues
   }
-
 
 
   const ACTION_HANDLERS = {
@@ -89,6 +92,10 @@ export const createBackendModule = (entityName) => {
 
 export const getEntities = (state, entityName) => {
   return state.entities[entityName].data
+}
+
+export const getEntity = (state, entityName, id) => {
+  return getEntities(state, entityName).find((entity) => entity.id === id)
 }
 
 export const getDataFromHalResponse = (json, entityName) => {
