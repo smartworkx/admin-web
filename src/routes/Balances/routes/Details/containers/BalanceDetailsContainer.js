@@ -10,6 +10,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state, ownProps) => {
   const routeState = state.balanceDetails
   return {
+    ...routeState,
     details: routeState.details || getEntity(state, 'balanceDetails', ownProps.routeParams.id),
   }
 }

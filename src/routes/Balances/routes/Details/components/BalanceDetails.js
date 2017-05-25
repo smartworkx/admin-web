@@ -8,10 +8,23 @@ class BalanceDetails extends Component {
   }
 
   render() {
-    const {details} = this.props
+    const {details, balanceLines} = this.props
+
     return <div>
       <h1>Balance</h1>
-      {details ? details.date : 'No details'}
+      <div>{details.date}</div>
+      <div>{details.description}</div>
+      <Table selectable={false}>
+        {balanceLines.map(line => {
+          const name = line.type === 'HEADING' ? <b>{line.name}</b> : line.name
+          return <TableRow key={line.name}>
+            <TableCell>{name}</TableCell>
+            <TableCell>{line.debitAmount}</TableCell>
+            <TableCell>{line.creditAmount}</TableCell>
+          </TableRow>
+        })
+        })}
+      </Table>
     </div>
   }
 }
