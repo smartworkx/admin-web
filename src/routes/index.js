@@ -5,7 +5,9 @@ import ValueAddedTax from './VatDeclarations'
 import Journal from './Journal'
 import Ledger from './Ledger'
 import Balances from './Balances'
-import BalanceDetails from './Balances/routes/Details'
+import BalanceDetails from './BalanceDetails'
+import PalStatements from './PalStatements'
+import PalStatementDetails from './PalStatementDetails'
 
 export const createRoutes = (store) => ({
   path: '/',
@@ -17,7 +19,9 @@ export const createRoutes = (store) => ({
     Journal(store),
     Ledger(store),
     Balances(store),
-    BalanceDetails(store)
+    BalanceDetails(store),
+    PalStatements(store),
+    PalStatementDetails(store)
   ]
 })
 

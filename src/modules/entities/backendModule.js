@@ -21,7 +21,7 @@ export const createBackendModule = (entityName) => {
     }
   }
 
-  const createActionCreator = ({values, successMessage, onDispatchFinished}) => {
+  const createActionCreator = ({values, successMessage}) => {
     return (dispatch) => {
       let promise = dispatch({
         types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
@@ -37,9 +37,6 @@ export const createBackendModule = (entityName) => {
         },
         successMessage: successMessage || 'Successfully created'
       })
-      if (onDispatchFinished) {
-        promise.then(onDispatchFinished)
-      }
       return promise
     }
   }

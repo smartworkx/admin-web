@@ -10,6 +10,8 @@ import inboxFinancialFacts from './inboxFinancialFacts'
 import ledgers from './ledgers'
 import origins from './origins'
 import balances from './balances'
+import palStatements from './palStatements'
+import palStatementCreationRequestedEvents from './palStatementCreationRequestedEvents'
 
 export {getEntities, getDataFromHalResponse}
 
@@ -22,7 +24,9 @@ export default combineReducers({
   origins,
   journalEntryCreatedEvents,
   vatDeclarationCreatedEvents,
-  balances
+  balances,
+  palStatements,
+  palStatementCreationRequestedEvents
 })
 
 

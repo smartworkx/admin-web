@@ -1,5 +1,5 @@
 import React from 'react'
-import reducer from 'routes/Balances/routes/Details/modules/balanceDetails'
+import reducer from 'routes/BalanceDetails/modules/balanceDetails'
 import {SUCCESS_CREATE} from 'modules/entities/balanceCreationRequestedEvents'
 
 describe('balance details route module', () => {

@@ -17,6 +17,8 @@ export const Header = () => (
       <Link to='/ledger' activeClassName='route--active'>Ledger</Link>
       {' · '}
       <Link to='/balances' activeClassName='route--active'>Balance</Link>
+      {' · '}
+      <Link to='/profit-and-loss-statements' activeClassName='route--active'>Profit and loss statement</Link>
     </Navigation>
   </AppBar>
 )
