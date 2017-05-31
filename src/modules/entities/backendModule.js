@@ -1,11 +1,15 @@
 import 'whatwg-fetch'
 import {removeTime} from 'modules/date'
 import {camelCaseToDashes} from 'modules/strings'
+import {addOrReplace} from 'modules/arrays'
 
 export const createBackendModule = (entityName) => {
   const SUCCESS_FETCH = '@@' + entityName + '/SUCCESS_FETCH'
   const START_FETCH = '@@' + entityName + '/START_FETCH'
   const ERROR_FETCH = '@@' + entityName + '/ERROR_FETCH'
+  const SUCCESS_FETCH_ONE = '@@' + entityName + '/SUCCESS_FETCH_ONE'
+  const START_FETCH_ONE = '@@' + entityName + '/START_FETCH_ONE'
+  const ERROR_FETCH_ONE = '@@' + entityName + '/ERROR_FETCH_ONE'
   const SUCCESS_CREATE = '@@' + entityName + '/SUCCESS_CREATE'
   const START_CREATE = '@@' + entityName + '/START_CREATE'
   const ERROR_CREATE = '@@' + entityName + '/ERROR_CREATE'
@@ -17,6 +21,15 @@ export const createBackendModule = (entityName) => {
       return dispatch({
         types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
         callAPI: (headers) => fetch('http://localhost:8080/' + path, {headers})
+      })
+    }
+  }
+
+  const fetchOneActionCreator = (id) => {
+    return (dispatch) => {
+      return dispatch({
+        types: [START_FETCH_ONE, SUCCESS_FETCH_ONE, ERROR_FETCH_ONE],
+        callAPI: (headers) => fetch('http://localhost:8080/' + path + '/' + id, {headers})
       })
     }
   }
@@ -61,6 +74,13 @@ export const createBackendModule = (entityName) => {
         data: getDataFromHalResponse(action.json, entityName),
         initialized: true
       }
+    },
+    [SUCCESS_FETCH_ONE]: (state, action) => {
+      return {
+        json: action.json,
+        data: addOrReplace(state.data, action.json),
+        initialized: true
+      }
     }
   }
 
@@ -78,11 +98,15 @@ export const createBackendModule = (entityName) => {
     SUCCESS_FETCH,
     START_FETCH,
     ERROR_FETCH,
+    SUCCESS_FETCH_ONE,
+    START_FETCH_ONE,
+    ERROR_FETCH_ONE,
     SUCCESS_CREATE,
     START_CREATE,
     ERROR_CREATE,
     reducer,
     fetchActionCreator,
+    fetchOneActionCreator,
     createActionCreator
   }
 }
@@ -92,7 +116,7 @@ export const getEntities = (state, entityName) => {
 }
 
 export const getEntity = (state, entityName, id) => {
-  return getEntities(state, entityName).find((entity) => entity.id === id)
+  return getEntities(state, entityName).find(entity => entity.id === Number.parseInt(id))
 }
 
 export const getDataFromHalResponse = (json, entityName) => {

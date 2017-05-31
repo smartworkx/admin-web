@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
 import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
-import BalanceCreationForm from 'forms/BalanceCreationForm'
+import BalanceCreationForm from './BalanceCreationForm'
 import classes from './Balances.scss'
 
 class Balances extends Component {
@@ -20,6 +21,7 @@ class Balances extends Component {
           <TableCell>Date</TableCell>
           <TableCell>Creation date</TableCell>
           <TableCell>Description</TableCell>
+          <TableCell></TableCell>
         </TableHead>
         {this.props.data.map(item => {
           return (
@@ -27,6 +29,7 @@ class Balances extends Component {
               <TableCell>{item.date}</TableCell>
               <TableCell>{item.creationDateTime}</TableCell>
               <TableCell>{item.description}</TableCell>
+              <TableCell><Link to={'/balances/' + item.id} >Details</Link></TableCell>
             </TableRow>
           )
         })}

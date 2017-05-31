@@ -1,4 +1,5 @@
 import {SUCCESS_CREATE} from 'modules/entities/balanceCreationRequestedEvents'
+import {SUCCESS_FETCH_ONE} from 'modules/entities/balanceDetails'
 
 export const actions = {}
 
@@ -15,22 +16,34 @@ function sortByDebitCredit(balanceHeadings) {
     return 0
   })
 }
-const ACTION_HANDLERS = {
-  [SUCCESS_CREATE]: (state, action) => {
-    const balanceLines = []
 
-    sortByDebitCredit(action.json.balanceHeadings).forEach((heading) => {
+export const getLines = (routeState) => {
+  const balanceLines = []
+  const details = routeState.details
+  if (details && details.balanceHeadings.length > 0) {
+    const balanceHeadings = details.balanceHeadings
+    sortByDebitCredit(balanceHeadings).forEach((heading) => {
       const debitCredit = heading.debitCredit
-      balanceLines.push(createLine(heading, debitCredit,'HEADING'))
+      balanceLines.push(createLine(heading, debitCredit, 'HEADING'))
       heading.accounts.forEach((account) => {
-        balanceLines.push(createLine(account, debitCredit,'ACCOUNT'))
+        balanceLines.push(createLine(account, debitCredit, 'ACCOUNT'))
       })
     })
+  }
+  return balanceLines
+}
 
+const ACTION_HANDLERS = {
+  [SUCCESS_CREATE]: (state, action) => {
     return {
       ...state,
-      details: action.json,
-      balanceLines
+      details: action.json
+    }
+  },
+  [SUCCESS_FETCH_ONE]: (state, action) => {
+    return {
+      ...state,
+      details: action.json
     }
   }
 }
@@ -48,8 +61,6 @@ function createLine(nameAmountObject, debitCredit, type) {
 // Reducer
 // ------------------------------------
 const initialState = {
-  details: {},
-  balanceLines: []
 }
 export default function balanceDetailsReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

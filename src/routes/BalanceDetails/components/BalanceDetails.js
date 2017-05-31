@@ -5,26 +5,34 @@ class BalanceDetails extends Component {
 
   constructor(props) {
     super(props)
+    if (props.id) {
+      props.fetchOne(props.id)
+    }
   }
 
   render() {
-    const {details, balanceLines} = this.props
-
-    return <div>
-      <h1>Balance</h1>
+    const {details, lines} = this.props
+    let content = null
+    if (details) {
+      content = <span>
       <div>{details.date}</div>
       <div>{details.description}</div>
       <Table selectable={false}>
-        {balanceLines.map(line => {
+        {lines.map(line => {
           const name = line.type === 'HEADING' ? <b>{line.name}</b> : line.name
           return <TableRow key={line.name}>
             <TableCell>{name}</TableCell>
             <TableCell>{line.debitAmount}</TableCell>
             <TableCell>{line.creditAmount}</TableCell>
           </TableRow>
-        })
         })}
-      </Table>
+        )}
+        </Table>
+      </span>
+    }
+    return <div>
+      <h1>Balance</h1>
+      {content ? content : <div>Loading details</div>}
     </div>
   }
 }

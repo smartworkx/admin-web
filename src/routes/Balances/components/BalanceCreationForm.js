@@ -6,7 +6,7 @@ import {Button} from 'react-toolbox'
 import {browserHistory} from 'react-router'
 import {getEntities} from 'modules/entities'
 import classes from './BalanceCreationForm.scss'
-import {date, text} from './Fields'
+import {date, text} from '../../../forms/Fields'
 import {create, SUCCESS_CREATE} from 'modules/entities/balanceCreationRequestedEvents'
 
 export class BalanceCreationForm extends Component {
@@ -39,14 +39,15 @@ const validate = (values) => {
 }
 
 const onSubmit = (values) => {
-  return create({
-    values,
-    onDispatchFinished: (action) => {
+  return (dispatch) => {
+    return dispatch(create({
+      values,
+    })).then(action => {
       if (action.type === SUCCESS_CREATE) {
         browserHistory.push('/balances/request')
       }
-    }
-  })
+    })
+  }
 }
 
 const mapDispatchToProps = {
