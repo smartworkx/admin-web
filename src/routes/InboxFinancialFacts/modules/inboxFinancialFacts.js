@@ -33,10 +33,14 @@ export const actions = {
 const ACTION_HANDLERS = {
   [FINANCIAL_FACT_PROPOSAL]: (state, action) => {
     const financialFact = action.financialFact
+    let description = 'Factuur voor bank transactie: ' + financialFact.description
+    if(action.origin === 'OUTGOING_INVOICE'){
+      description = 'Uitgaande factuur: ' + financialFact.description
+    }
     const financialFactProposal = financialFact ? {
       valueDate: new Date(financialFact.valueDate),
       amount: financialFact.amount.value.toString(),
-      description: 'Factuur voor bank transactie: ' + financialFact.description,
+      description: description,
       origin: action.origin
     } : null
     return {

@@ -52,6 +52,11 @@ class InboxFinancialFacts extends Component {
                     origin: 'INCOMING_INVOICE',
                   })}>Incoming invoice</Button>
                 <Button
+                  onClick={() => this.props.openFinancialFactDialog({
+                    financialFact: financialFact,
+                    origin: 'OUTGOING_INVOICE',
+                  })}>Outgoing invoice</Button>
+                <Button
                   onClick={() => this.props.fetchJournalEntryProposals({
                     financialFactId: financialFact.id,
                     amount: financialFact.amount.value,
