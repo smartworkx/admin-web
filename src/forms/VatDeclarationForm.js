@@ -30,7 +30,7 @@ export class VatDeclarationForm extends Component {
       <div className={classes.form}>
         <form onSubmit={handleSubmit}>
           <div className={classes.field}>
-            <Field name='year' label='Year' component={dropdown} source={lodash.range(2017, 2101)} />
+            <Field name='year' label='Year' component={dropdown} source={lodash.range(2015, 2101)} />
           </div>
           <div className={classes.field}>
             <Field name='quarter' label='Quarter' component={dropdown} source={lodash.range(1, 5)} />

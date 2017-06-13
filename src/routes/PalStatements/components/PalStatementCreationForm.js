@@ -25,8 +25,8 @@ export class PalStatementCreationForm extends Component {
     return (
       <div className={classes.form}>
         <form onSubmit={handleSubmit}>
-          <Field name='startDate' label='Start date' component={date} />
-          <Field name='endDate' label='End date' component={date} />
+          <Field name='startDate' label='Start date' component={text} />
+          <Field name='endDate' label='End date' component={text} />
           <Field name='description' label='Description' component={text} />
           <Button type="submit" disabled={pristine || submitting} className={classes.button}>Create</Button>
         </form>

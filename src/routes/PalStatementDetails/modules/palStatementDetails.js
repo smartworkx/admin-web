@@ -23,12 +23,11 @@ const createLine = (nameAmountObject, debitCredit, type) => {
   }
 }
 
-
-
 export const getLines = (routeState, ledgers) => {
   const lines = []
-  if (routeState.details && routeState.details.headings.length > 0 && ledgers && ledgers.length > 0) {
-    sortByDebitCredit(routeState.details.headings).forEach((heading) => {
+  const details = routeState.details
+  if (details && details.headings.length > 0 && ledgers && ledgers.length > 0) {
+    sortByDebitCredit(details.headings).forEach((heading) => {
       lines.push(createLine(heading, heading.debitCredit, 'HEADING'))
       const recordsGroupedByLedger = groupBy(heading.records, 'ledgerId')
       recordsGroupedByLedger.forEach((value, key) => {
@@ -38,6 +37,7 @@ export const getLines = (routeState, ledgers) => {
         }, heading.debitCredit, 'LEDGER'))
       })
     })
+    lines.push({name: 'Profit', debitAmount: 0, creditAmount: details.profit.value, type: 'HEADING'})
   }
   return lines
 }

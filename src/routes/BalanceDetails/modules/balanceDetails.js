@@ -29,7 +29,13 @@ export const getLines = (routeState) => {
         balanceLines.push(createLine(account, debitCredit, 'ACCOUNT'))
       })
     })
+    balanceLines.push({
+      name: 'Total',
+      debitAmount: details.debitAmount.value,
+      creditAmount: details.creditAmount.value
+    })
   }
+
   return balanceLines
 }
 
@@ -60,8 +66,7 @@ function createLine(nameAmountObject, debitCredit, type) {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {
-}
+const initialState = {}
 export default function balanceDetailsReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

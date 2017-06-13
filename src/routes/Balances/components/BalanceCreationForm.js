@@ -24,7 +24,7 @@ export class BalanceCreationForm extends Component {
     return (
       <div className={classes.form}>
         <form onSubmit={handleSubmit}>
-          <Field name='date' label='Date' component={date} />
+          <Field name='date' label='Date' component={text} />
           <Field name='description' label='Description' component={text} />
           <Button type="submit" disabled={pristine || submitting} className={classes.button}>Create</Button>
         </form>
