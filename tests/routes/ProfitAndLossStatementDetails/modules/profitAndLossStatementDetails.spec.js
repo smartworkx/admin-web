@@ -8,9 +8,9 @@ describe('pal statement details route module', () => {
   beforeEach(() => {
   })
 
-  it.only('Creates lines', () => {
+  it('Creates lines', () => {
     const lines = getLines({details: creationRequestResponse}, testUtils.ledgers)
-    expect(lines).to.have.lengthOf(9)
+    expect(lines).to.have.lengthOf(10)
 
   })
 })
