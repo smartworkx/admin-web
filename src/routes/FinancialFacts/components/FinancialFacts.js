@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
 import JournalEntryForm from 'forms/JournalEntryForm'
-import classes from './InboxFinancialFacts.scss'
+import classes from './FinancialFacts.scss'
 
 class InboxFinancialFacts extends Component {
 
