@@ -1,5 +1,4 @@
-import {createBackendModule} from './backendModule'
-
+import { createBackendModule } from './backendModule'
 
 export const ENTITY_NAME = 'profitAndLossStatementCreationRequestedEvents'
 

@@ -1,8 +1,7 @@
-import {connect} from 'react-redux'
-import {actions, getLines} from '../modules/balanceDetails'
-import {getEntity} from 'modules/entities/backendModule'
+import { connect } from 'react-redux'
+import { actions, getLines } from '../modules/balanceDetails'
 import BalanceDetails from '../components/BalanceDetails'
-import {fetchOne} from 'modules/entities/balanceDetails'
+import { fetchOne } from 'modules/entities/balanceDetails'
 
 const mapDispatchToProps = {
   ...actions,

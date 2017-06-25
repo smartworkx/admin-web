@@ -25,7 +25,6 @@ export const upload = (file) => {
   }
 }
 
-
 export const actions = {
   upload,
   handleFileSelect
@@ -48,7 +47,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
 }
-export default function bankFileUploadsReducer(state = initialState, action) {
+export default function bankFileUploadsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

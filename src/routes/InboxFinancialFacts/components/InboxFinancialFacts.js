@@ -1,19 +1,19 @@
-import React, {Component} from 'react'
-import {Button, Table, TableCell, TableHead, TableRow, Dialog} from 'react-toolbox'
+import React, { Component } from 'react'
+import { Button, Table, TableCell, TableHead, TableRow, Dialog } from 'react-toolbox'
 import JournalEntryForm from 'forms/JournalEntryForm'
 import classes from './InboxFinancialFacts.scss'
 import FinancialFactForm from 'forms/FinancialFactForm'
 
 class InboxFinancialFacts extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
-    const {fetchInboxFinancialFacts, fetchLedgers} = props
+    const { fetchInboxFinancialFacts, fetchLedgers } = props
     fetchInboxFinancialFacts()
     fetchLedgers()
   }
 
-  render() {
+  render () {
     return <div>
       <div className={classes.titleLine}>
         <h1 className={classes.pageTitle}>Inbox</h1>
@@ -32,7 +32,7 @@ class InboxFinancialFacts extends Component {
       </Dialog>
       <Table selectable={false}>
         <TableHead>
-          <TableCell></TableCell>
+          <TableCell />
           <TableCell>Value date</TableCell>
           <TableCell>Description</TableCell>
           <TableCell>Amount</TableCell>
@@ -49,12 +49,12 @@ class InboxFinancialFacts extends Component {
                 <Button
                   onClick={() => this.props.openFinancialFactDialog({
                     financialFact: financialFact,
-                    origin: 'INCOMING_INVOICE',
+                    origin: 'INCOMING_INVOICE'
                   })}>Incoming invoice</Button>
                 <Button
                   onClick={() => this.props.openFinancialFactDialog({
                     financialFact: financialFact,
-                    origin: 'OUTGOING_INVOICE',
+                    origin: 'OUTGOING_INVOICE'
                   })}>Outgoing invoice</Button>
                 <Button
                   onClick={() => this.props.fetchJournalEntryProposals({
@@ -81,13 +81,13 @@ class InboxFinancialFacts extends Component {
                   onClick={() => this.props.fetchJournalEntryProposals({
                     financialFactId: financialFact.id,
                     amount: financialFact.amount.value,
-                    type: 'PRIVATE',
+                    type: 'PRIVATE'
                   })}>Private</Button>
                 <Button
                   onClick={() => this.props.fetchJournalEntryProposals({
                     financialFactId: financialFact.id,
                     amount: financialFact.amount.value,
-                    type: 'CREDIT',
+                    type: 'CREDIT'
                   })}>Credit</Button>
               </TableCell>
               <TableCell>{financialFact.valueDate}</TableCell>
@@ -96,8 +96,8 @@ class InboxFinancialFacts extends Component {
               <TableCell>{financialFact.amount.currency}</TableCell>
               <TableCell>{financialFact.debitCredit}</TableCell>
               <TableCell className={classes.journalEntriesCell}><JournalEntryForm form={'journalEntryForFinancialFact' + financialFact.id}
-                                                                                  initialValues={{financialFactId: financialFact.id, records: item.records}}
-                                                                                  enableReinitialize={true} /></TableCell>
+                initialValues={{ financialFactId: financialFact.id, records: item.records }}
+                enableReinitialize /></TableCell>
             </TableRow>
           )
         })}

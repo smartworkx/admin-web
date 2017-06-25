@@ -1,8 +1,6 @@
-import React from 'react'
-import reducer, {CREATE_JOURNAL} from 'routes/Journal/modules/journal'
+import reducer, { CREATE_JOURNAL } from 'routes/Journal/modules/journal'
 
 describe('Journal module', () => {
-
   beforeEach(() => {
   })
 

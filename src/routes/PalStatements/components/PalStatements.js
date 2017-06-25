@@ -1,17 +1,16 @@
-import React, {Component} from 'react'
-import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
+import React, { Component } from 'react'
+import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
 import CreationForm from './PalStatementCreationForm'
-import classes from './PalStatements.scss'
 
 class PalStatements extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
-    const {fetch} = props
+    const { fetch } = props
     fetch()
   }
 
-  render() {
+  render () {
     return <div>
       <h1>Profit and loss statements</h1>
       <CreationForm />

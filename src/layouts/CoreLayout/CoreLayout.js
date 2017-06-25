@@ -1,11 +1,11 @@
 import React from 'react'
-import {Layout, NavDrawer, Panel} from 'react-toolbox'
+import { Layout, Panel } from 'react-toolbox'
 import Header from '../../components/Header'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 import GlobalMessage from 'components/GlobalMessage'
 
-export const CoreLayout = ({children}) => (
+export const CoreLayout = ({ children }) => (
   <Layout>
     <Panel>
       <Header />

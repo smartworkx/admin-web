@@ -1,18 +1,16 @@
-import React, {Component} from 'react'
-import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
+import React, { Component } from 'react'
+import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
 import VatDeclarationForm from 'forms/VatDeclarationForm'
-import classes from './VatDeclarations.scss'
 
 class VatDeclarations extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
-    super(props)
-    const {fetch} = props
+    const { fetch } = props
     fetch()
   }
 
-  render() {
+  render () {
     return <div>
       <h1>Value added tax declarations</h1>
       <VatDeclarationForm />
@@ -29,7 +27,7 @@ class VatDeclarations extends Component {
             <TableRow
               key={item.id}
             >
-              <TableCell>{item.period.year +  ' - ' + item.period.quarter}</TableCell>
+              <TableCell>{item.period.year + ' - ' + item.period.quarter}</TableCell>
               <TableCell>{item.creationDateTime}</TableCell>
               <TableCell>{item.vatServicedAmount.value}</TableCell>
               <TableCell>{item.vatDeductedAmount.value}</TableCell>

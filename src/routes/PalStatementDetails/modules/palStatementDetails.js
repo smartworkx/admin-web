@@ -1,5 +1,5 @@
-import {groupBy} from 'modules/arrays'
-import {SUCCESS_CREATE} from 'modules/entities/palStatementCreationRequestedEvents'
+import { groupBy } from 'modules/arrays'
+import { SUCCESS_CREATE } from 'modules/entities/palStatementCreationRequestedEvents'
 
 export const actions = {}
 
@@ -33,11 +33,11 @@ export const getLines = (routeState, ledgers) => {
       recordsGroupedByLedger.forEach((value, key) => {
         lines.push(createLine({
           name: ledgers.find((ledger) => ledger.id === key).name,
-          amount: {value: value.map(record => record.amount.value).reduce((accumulator, currentValue) => accumulator + currentValue, 0)}
+          amount: { value: value.map(record => record.amount.value).reduce((accumulator, currentValue) => accumulator + currentValue, 0) }
         }, heading.debitCredit, 'LEDGER'))
       })
     })
-    lines.push({name: 'Profit', debitAmount: 0, creditAmount: details.profit.value, type: 'HEADING'})
+    lines.push({ name: 'Profit', debitAmount: 0, creditAmount: details.profit.value, type: 'HEADING' })
   }
   return lines
 }
@@ -50,7 +50,7 @@ const ACTION_HANDLERS = {
   [SUCCESS_CREATE]: (state, action) => {
     return {
       ...state,
-      details: action.json,
+      details: action.json
     }
   }
 }
@@ -62,7 +62,7 @@ const initialState = {
   details: {},
   balanceLines: []
 }
-export default function palStatementDetailsReducer(state = initialState, action) {
+export default function palStatementDetailsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

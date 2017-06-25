@@ -1,6 +1,5 @@
-import {combineReducers} from 'redux'
-import {getEntities, getDataFromHalResponse} from './backendModule'
-import {camelCaseToDashes} from 'modules/strings'
+import { combineReducers } from 'redux'
+import { getEntities, getDataFromHalResponse } from './backendModule'
 import financialFacts from './financialFacts'
 import journalEntries from './journalEntries'
 import journalEntryCreatedEvents from './journalEntryCreatedEvents'
@@ -14,7 +13,7 @@ import balanceDetails from './balanceDetails'
 import palStatements from './palStatements'
 import palStatementCreationRequestedEvents from './palStatementCreationRequestedEvents'
 
-export {getEntities, getDataFromHalResponse}
+export { getEntities, getDataFromHalResponse }
 
 export default combineReducers({
   inboxFinancialFacts,
@@ -30,5 +29,4 @@ export default combineReducers({
   palStatements,
   palStatementCreationRequestedEvents
 })
-
 

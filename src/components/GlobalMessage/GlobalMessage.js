@@ -1,8 +1,8 @@
 import React from 'react'
-import {Snackbar} from 'react-toolbox'
+import { Snackbar } from 'react-toolbox'
 import classes from './GlobalMessage.scss'
 
-function GlobalMessage(props) {
+function GlobalMessage (props) {
   return (
     <div className={classes.globalMessage}>
       {(() => {

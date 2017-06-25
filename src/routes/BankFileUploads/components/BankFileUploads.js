@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './BankFileUploads.scss'
-import {Button} from 'react-toolbox'
+import { Button } from 'react-toolbox'
 
 export const BankFileUploads = (props) => (
   <div>

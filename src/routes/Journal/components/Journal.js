@@ -1,16 +1,15 @@
-import React, {Component} from 'react'
-import {Button, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
-import classes from './Journal.scss'
+import React, { Component } from 'react'
+import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
 
 class Journal extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
-    const {createJournal} = props
+    const { createJournal } = props
     createJournal()
   }
 
-  render() {
+  render () {
     return <div>
       <h1>Journal</h1>
       <Table selectable={false}>

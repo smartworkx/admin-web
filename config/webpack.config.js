@@ -1,6 +1,5 @@
 const argv = require('yargs').argv
 const webpack = require('webpack')
-const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('./project.config')

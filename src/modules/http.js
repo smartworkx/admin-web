@@ -3,7 +3,7 @@ export const objectToQuery = (object) => {
   for (const property in object) {
     const propertyValue = object[property]
     if (propertyValue !== undefined && propertyValue !== null) {
-      query.push({name: property, value: propertyValue})
+      query.push({ name: property, value: propertyValue })
     }
   }
   return query

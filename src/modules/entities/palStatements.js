@@ -1,4 +1,4 @@
-import {createBackendModule} from './backendModule'
+import { createBackendModule } from './backendModule'
 
 const module = createBackendModule('profitAndLossStatements')
 

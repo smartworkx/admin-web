@@ -1,4 +1,4 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import GlobalMessage from './GlobalMessage'
 
 // ------------------------------------
@@ -27,7 +27,7 @@ export const showErrorMessage = (message) => {
 }
 
 export const hideMessage = () => {
-  return {type: HIDE_MESSAGE}
+  return { type: HIDE_MESSAGE }
 }
 
 export const actions = {

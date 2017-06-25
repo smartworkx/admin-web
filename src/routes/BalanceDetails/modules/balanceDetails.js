@@ -1,12 +1,12 @@
-import {SUCCESS_CREATE} from 'modules/entities/balanceCreationRequestedEvents'
-import {SUCCESS_FETCH_ONE} from 'modules/entities/balanceDetails'
+import { SUCCESS_CREATE } from 'modules/entities/balanceCreationRequestedEvents'
+import { SUCCESS_FETCH_ONE } from 'modules/entities/balanceDetails'
 
 export const actions = {}
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
-function sortByDebitCredit(balanceHeadings) {
+function sortByDebitCredit (balanceHeadings) {
   return balanceHeadings.sort((a, b) => {
     if (a.debitCredit === 'DEBIT' && b.debitCredit === 'CREDiT') {
       return -1
@@ -54,7 +54,7 @@ const ACTION_HANDLERS = {
   }
 }
 
-function createLine(nameAmountObject, debitCredit, type) {
+function createLine (nameAmountObject, debitCredit, type) {
   return {
     name: nameAmountObject.name,
     debitAmount: debitCredit === 'DEBIT' ? nameAmountObject.amount.value : null,
@@ -67,7 +67,7 @@ function createLine(nameAmountObject, debitCredit, type) {
 // Reducer
 // ------------------------------------
 const initialState = {}
-export default function balanceDetailsReducer(state = initialState, action) {
+export default function balanceDetailsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

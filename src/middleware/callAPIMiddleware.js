@@ -1,11 +1,11 @@
-import {showErrorMessage, showMessage} from 'components/GlobalMessage'
+import { showErrorMessage, showMessage } from 'components/GlobalMessage'
 
 // ------------------------------------
 // Middleware for handling all the api calls to the server. It reduces boilerplate and acts as an central place to
 // handle security and server side error messages.
 // ------------------------------------
-export default function callAPIMiddlewareFactory() {
-  return ({dispatch, getState}) => {
+export default function callAPIMiddlewareFactory () {
+  return ({ dispatch, getState }) => {
     return next => action => {
       const {
         types,
@@ -36,7 +36,7 @@ export default function callAPIMiddlewareFactory() {
 
       const [requestType, successType, failureType] = types
 
-      function handleResponse({response, json, text}) {
+      function handleResponse ({ response, json, text }) {
         if (response.ok) {
           if (successMessage) {
             dispatch(showMessage(successMessage, 'success'))
@@ -71,7 +71,7 @@ export default function callAPIMiddlewareFactory() {
       })
 
       const headers = new Headers()
-      headers.append("Accept", "application/hal+json")
+      headers.append('Accept', 'application/hal+json')
       return callAPI(headers).then(
         response => {
           const contentType = response.headers.get('content-type')
@@ -79,14 +79,14 @@ export default function callAPIMiddlewareFactory() {
             (contentType.indexOf('application/json') !== -1 ||
             contentType.indexOf('application/hal+json') !== -1)) {
             return response.json().then((json) => {
-              return handleResponse({response, json})
+              return handleResponse({ response, json })
             })
           } else if (contentType && contentType.indexOf('text') !== -1) {
             return response.text().then((text) => {
-              return handleResponse({response, text})
+              return handleResponse({ response, text })
             })
           } else {
-            return handleResponse({response})
+            return handleResponse({ response })
           }
         },
         error => {

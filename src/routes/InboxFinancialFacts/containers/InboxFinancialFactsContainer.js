@@ -1,10 +1,9 @@
-import {connect} from 'react-redux'
-import {actions} from '../modules/inboxFinancialFacts'
+import { connect } from 'react-redux'
+import { actions } from '../modules/inboxFinancialFacts'
 import InboxFinancialFacts from '../components/InboxFinancialFacts'
-import {getEntities} from 'modules/entities'
-import {fetchInboxFinancialFacts} from 'modules/entities/inboxFinancialFacts'
-import {fetchLedgers} from 'modules/entities/ledgers'
-import {fetchJournalEntryProposals} from 'modules/entities/inboxFinancialFacts'
+import { getEntities } from 'modules/entities'
+import { fetchInboxFinancialFacts, fetchJournalEntryProposals } from 'modules/entities/inboxFinancialFacts'
+import { fetchLedgers } from 'modules/entities/ledgers'
 
 const mapDispatchToProps = {
   ...actions,

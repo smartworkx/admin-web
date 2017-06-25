@@ -9,8 +9,8 @@ export const groupBy = (array, propertyToGroupBy) => {
     } else {
       objectsForKey.push(record)
     }
-    return rv;
-  }, new Map());
+    return rv
+  }, new Map())
 }
 
 export const addOrReplace = (array, objectWithId) => {

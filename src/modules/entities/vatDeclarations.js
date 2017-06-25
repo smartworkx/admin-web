@@ -1,5 +1,5 @@
-import {createBackendModule} from './backendModule'
-import {SUCCESS_CREATE as VAT_DECLARATION_SUCCESS_CREATE} from './vatDeclarationCreatedEvents'
+import { createBackendModule } from './backendModule'
+import { SUCCESS_CREATE as VAT_DECLARATION_SUCCESS_CREATE } from './vatDeclarationCreatedEvents'
 
 const module = createBackendModule('vatDeclarations')
 

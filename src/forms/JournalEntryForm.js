@@ -1,21 +1,20 @@
 import React from 'react'
-import {compose} from 'redux'
-import {connect} from 'react-redux'
-import {Field, FieldArray, reduxForm} from 'redux-form'
-import {amount, autocomplete, debitCredit, nameCodeArrayToObject} from './Fields'
-import {Button, FontIcon} from 'react-toolbox'
-import {getEntities} from 'modules/entities'
-import {getAutocomplete} from 'modules/autocomplete'
-import {create} from 'modules/entities/journalEntryCreatedEvents'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { Field, FieldArray, reduxForm } from 'redux-form'
+import { amount, autocomplete, debitCredit } from './Fields'
+import { Button, FontIcon } from 'react-toolbox'
+import { getAutocomplete } from 'modules/autocomplete'
+import { create } from 'modules/entities/journalEntryCreatedEvents'
 import classes from './JournalEntryForm.scss'
-import {fetch as fetchLedgers} from 'modules/entities/ledgers'
+import { fetch as fetchLedgers } from 'modules/entities/ledgers'
 
 const validate = (values) => {
-  const errors = {};
-  return errors;
+  const errors = {}
+  return errors
 }
 
-const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers, financialFactId}) => (
+const renderRecords = ({ fields, meta: { touched, error, submitFailed }, ledgers, financialFactId }) => (
   <div>
     <div>
       <Button onClick={() => fields.push({})}> <FontIcon value='add' /></Button>
@@ -28,23 +27,23 @@ const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers, f
             onClick={() => fields.remove(index)}> <FontIcon value='remove' /></Button>
           <div className={classes.journalEntryField}>
             <Field name={`${record}.ledger`}
-                   component={autocomplete}
-                   label="Ledger"
-                   source={ledgers}
-                   multiple={false}
+              component={autocomplete}
+              label='Ledger'
+              source={ledgers}
+              multiple={false}
             />
           </div>
           <div className={classes.journalEntryField}>
             <Field
               name={`${record}.debitCredit`}
               component={debitCredit}
-              label="Debit/credit" />
+              label='Debit/credit' />
           </div>
           <div className={classes.journalEntryField}>
             <Field
               name={`${record}.amount`}
               component={amount}
-              label="Amount" />
+              label='Amount' />
           </div>
         </div>
       )}
@@ -53,18 +52,17 @@ const renderRecords = ({fields, meta: {touched, error, submitFailed}, ledgers, f
 )
 
 const JournalEntryForm = (props) => {
-  const {ledgers, handleSubmit, submitting, reset} = props
+  const { ledgers, handleSubmit, submitting, reset } = props
   return (
     <div className={classes.journalEntryForm}>
       <form onSubmit={handleSubmit}>
         <FieldArray name='records' component={renderRecords} ledgers={ledgers} />
-        <Button type="submit" disabled={submitting}>Submit</Button>
-        <Button type="button" disabled={submitting} onClick={reset}>Clear</Button>
+        <Button type='submit' disabled={submitting}>Submit</Button>
+        <Button type='button' disabled={submitting} onClick={reset}>Clear</Button>
       </form>
     </div>
   )
 }
-
 
 const onSubmit = (values) => {
   return create({

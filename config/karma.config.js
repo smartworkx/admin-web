@@ -19,7 +19,7 @@ const karmaConfig = {
   frameworks: ['mocha'],
   reporters: ['mocha'],
   preprocessors: {
-    [`${project.dir_test}/test-bundler.js`]: ['webpack','sourcemap']
+    [`${project.dir_test}/test-bundler.js`]: ['webpack', 'sourcemap']
   },
   browsers: ['PhantomJS'],
   webpack: {

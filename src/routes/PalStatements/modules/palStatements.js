@@ -14,7 +14,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
 }
-export default function palStatementsReducer(state = initialState, action) {
+export default function palStatementsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

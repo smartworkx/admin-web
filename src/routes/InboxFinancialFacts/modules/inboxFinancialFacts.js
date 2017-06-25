@@ -1,10 +1,10 @@
-import {fetchInboxFinancialFacts} from 'modules/entities/inboxFinancialFacts'
+import { fetchInboxFinancialFacts } from 'modules/entities/inboxFinancialFacts'
 
-const FINANCIAL_FACT_PROPOSAL = "FINANCIAL_FACT_PROPOSAL"
+const FINANCIAL_FACT_PROPOSAL = 'FINANCIAL_FACT_PROPOSAL'
 
-const CANCEL_FINANCIAL_FACT_CREATION = "CANCEL_FINANCIAL_FACT_CREATION"
+const CANCEL_FINANCIAL_FACT_CREATION = 'CANCEL_FINANCIAL_FACT_CREATION'
 
-const openFinancialFactDialog = ({financialFact, origin}) => {
+const openFinancialFactDialog = ({ financialFact, origin }) => {
   return {
     type: FINANCIAL_FACT_PROPOSAL,
     financialFact,
@@ -21,7 +21,6 @@ const cancelFinancialFactCreation = () => {
   }
 }
 
-
 export const actions = {
   openFinancialFactDialog,
   cancelFinancialFactCreation
@@ -34,9 +33,9 @@ const ACTION_HANDLERS = {
   [FINANCIAL_FACT_PROPOSAL]: (state, action) => {
     const financialFact = action.financialFact
     let description = null
-    if(financialFact) {
+    if (financialFact) {
       description = 'Factuur voor bank transactie: ' + financialFact.description
-      if(action.origin === 'OUTGOING_INVOICE'){
+      if (action.origin === 'OUTGOING_INVOICE') {
         description = 'Uitgaande factuur: ' + financialFact.description
       }
     }
@@ -68,7 +67,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   active: false
 }
-export default function inboxFinancialFactsReducer(state = initialState, action) {
+export default function inboxFinancialFactsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

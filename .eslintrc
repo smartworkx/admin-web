@@ -19,6 +19,7 @@
     "__COVERAGE__": false
   },
   "rules": {
+    "react/prop-types": 0,
     "key-spacing": 0,
     "jsx-quotes": [
       2,
@@ -26,7 +27,7 @@
     ],
     "max-len": [
       2,
-      120,
+      150,
       2
     ],
     "object-curly-spacing": [

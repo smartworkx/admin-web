@@ -1,8 +1,7 @@
 import _ from 'lodash'
-import {fetch} from 'modules/entities/journalEntries'
-import {fetchLedgers} from 'modules/entities/ledgers'
-import {getDataFromHalResponse} from 'modules/entities'
-
+import { fetch } from 'modules/entities/journalEntries'
+import { fetchLedgers } from 'modules/entities/ledgers'
+import { getDataFromHalResponse } from 'modules/entities'
 
 export const CREATE_JOURNAL = '@@Journal/CREATE_JOURNAL'
 
@@ -30,7 +29,7 @@ export const actions = {
 const ACTION_HANDLERS = {
   [CREATE_JOURNAL]: (state, action) => {
     const journalLines = _.flatMap(action.journalEntries, (entry) => {
-      return entry.records.sort((a,b) => a.debitCredit < b.debitCredit).map((record, i) => {
+      return entry.records.sort((a, b) => a.debitCredit < b.debitCredit).map((record, i) => {
         return {
           valueDate: i === 0 ? entry.valueDate : null,
           ledger: action.ledgers.find((ledger) => ledger.id === record.ledgerId).name,
@@ -53,7 +52,7 @@ const initialState = {
   journalLines: []
 }
 
-export default function journalReducer(state = initialState, action) {
+export default function journalReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
