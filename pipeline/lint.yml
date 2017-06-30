@@ -7,11 +7,7 @@ image_resource:
     repository: node
 
 inputs:
-  - name: sources
+  - name: install
     path: .
-
-outputs:
-- name: install
-
 run:
-  path: ./pipeline/install.sh
+  path: ./pipeline/lint.sh
