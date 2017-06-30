@@ -14,3 +14,5 @@ jobs:
     file: sources/pipeline/install.yml
   - task: test
     file: sources/pipeline/test.yml
+  - task: lint
+    file: sources/pipeline/lint.yml
