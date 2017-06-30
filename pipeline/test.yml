@@ -1,7 +1,10 @@
 platform: linux
-image: "docker:///node#4.2.3"
+image-resource:
+  type: docker-image
+  source:
+    repository: node
 inputs:
   - name: install
     path: .
 run:
-  path: sources/pipeline/test.sh
+  path: ./pipeline/test.sh
