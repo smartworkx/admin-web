@@ -8,7 +8,6 @@ image_resource:
 
 inputs:
   - name: sources
-    path: .
 
 outputs:
   - name: install
