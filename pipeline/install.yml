@@ -11,7 +11,7 @@ inputs:
     path: .
 
 outputs:
-- name: install
+  - name: install
 
 run:
   path: ./pipeline/install.sh
