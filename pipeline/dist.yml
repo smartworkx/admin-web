@@ -11,5 +11,6 @@ inputs:
 
 outputs:
   - name: dist
+    path: sources
 run:
   path: sources/pipeline/dist.sh

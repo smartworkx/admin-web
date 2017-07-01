@@ -84,3 +84,4 @@ jspm_packages
 /.vagrant/
 /provisioning/playbook.retry
 /dist
+credentials.yml
