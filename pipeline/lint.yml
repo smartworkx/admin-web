@@ -8,6 +8,5 @@ image_resource:
 
 inputs:
   - name: sources
-    path: .
 run:
-  path: ./pipeline/lint.sh
+  path: sources/pipeline/lint.sh

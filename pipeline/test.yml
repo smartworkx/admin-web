@@ -8,6 +8,5 @@ image_resource:
 
 inputs:
   - name: sources
-    path: .
 run:
-  path: ./pipeline/test.sh
+  path: sources/pipeline/test.sh
