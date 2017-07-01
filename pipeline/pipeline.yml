@@ -10,8 +10,6 @@ jobs:
   plan:
   - get: sources
     trigger: true
-  - task: test
-    file: sources/pipeline/test.yml
   - task: lint
     file: sources/pipeline/lint.yml
   - task: dist
