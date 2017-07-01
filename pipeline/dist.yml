@@ -8,9 +8,6 @@ image_resource:
 
 inputs:
   - name: sources
-
-outputs:
-  - name: install
-
+    path: .
 run:
-  path: ./pipeline/install.sh
+  path: ./pipeline/dist.sh
