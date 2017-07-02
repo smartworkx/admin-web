@@ -9,7 +9,5 @@ image_resource:
 inputs:
   - name: sources
 
-outputs:
-  - name: dist
 run:
   path: sources/pipeline/dist.sh
