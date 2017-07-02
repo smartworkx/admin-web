@@ -27,3 +27,9 @@ jobs:
     file: sources/pipeline/dist.yml
   - put: admin-web-image
     params: {build: dist}
+- name: deploy-staging
+  plan:
+  - get: admin-web-image
+    trigger: false
+  - task: deploy
+    file: sources/pipeline/deploy.yml

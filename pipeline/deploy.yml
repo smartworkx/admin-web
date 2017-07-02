@@ -4,12 +4,10 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: node
+    repository: google/cloud-sdk
 
 inputs:
   - name: sources
 
-outputs:
-  - name: dist
 run:
-  path: sources/pipeline/dist.sh
+  path: sources/pipeline/deploy.sh
