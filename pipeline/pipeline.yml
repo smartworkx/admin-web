@@ -28,7 +28,7 @@ jobs:
   - task: prepare-build
     file: sources/pipeline/prepare-build.yml
   - put: admin-web-image
-    params: {build: sources}
+    params: {build: build}
 - name: deploy-staging
   plan:
   - get: admin-web-image
