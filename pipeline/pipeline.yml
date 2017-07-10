@@ -25,6 +25,8 @@ jobs:
     trigger: true
   - task: dist
     file: sources/pipeline/dist.yml
+  - task: prepare-build
+    file: sources/pipeline/prepare-build.yml
   - put: admin-web-image
     params: {build: sources}
 - name: deploy-staging
