@@ -7,7 +7,7 @@ image_resource:
     repository: google/cloud-sdk
 
 inputs:
-  - name: admin-web-image
+  - name: sources
 
 run:
   path: sources/pipeline/deploy.sh
