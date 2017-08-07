@@ -1,9 +1,10 @@
 import 'whatwg-fetch'
-import { removeTime } from 'modules/date'
-import { camelCaseToDashes } from 'modules/strings'
-import { addOrReplace } from 'modules/arrays'
+import {removeTime} from 'modules/date'
+import {camelCaseToDashes} from 'modules/strings'
+import {addOrReplace} from 'modules/arrays'
+import {objectToQueryParams} from 'modules/http'
 
-export const createBackendModule = (entityName) => {
+export const createBackendModule = (entityName, props) => {
   const SUCCESS_FETCH = '@@' + entityName + '/SUCCESS_FETCH'
   const START_FETCH = '@@' + entityName + '/START_FETCH'
   const ERROR_FETCH = '@@' + entityName + '/ERROR_FETCH'
@@ -14,13 +15,15 @@ export const createBackendModule = (entityName) => {
   const START_CREATE = '@@' + entityName + '/START_CREATE'
   const ERROR_CREATE = '@@' + entityName + '/ERROR_CREATE'
 
-  const path = camelCaseToDashes(entityName)
+  const extraPath = props && props.extraPath ? props.extraPath : ''
+  const path = camelCaseToDashes(entityName) + extraPath
 
   const fetchActionCreator = () => {
     return (dispatch) => {
+      const query = props ? objectToQueryParams(props.defaultFetchParams) : ''
       return dispatch({
         types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
-        callAPI: (headers) => fetch('http://localhost:8080/' + path, { headers })
+        callAPI: (headers) => fetch('http://localhost:8080/' + path + query, {headers})
       })
     }
   }
@@ -29,12 +32,12 @@ export const createBackendModule = (entityName) => {
     return (dispatch) => {
       return dispatch({
         types: [START_FETCH_ONE, SUCCESS_FETCH_ONE, ERROR_FETCH_ONE],
-        callAPI: (headers) => fetch('http://localhost:8080/' + path + '/' + id, { headers })
+        callAPI: (headers) => fetch('http://localhost:8080/' + path + '/' + id, {headers})
       })
     }
   }
 
-  const createActionCreator = ({ values, successMessage }) => {
+  const createActionCreator = ({values, successMessage}) => {
     return (dispatch) => {
       let promise = dispatch({
         types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],

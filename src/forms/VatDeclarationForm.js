@@ -18,7 +18,7 @@ const VatDeclarationForm = (props) => {
     handleSubmit,
     pristine,
     submitting
-  } = this.props
+  } = props
 
   return (
     <div className={classes.form}>
