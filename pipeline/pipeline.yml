@@ -33,5 +33,8 @@ jobs:
   plan:
   - get: admin-web-image
     trigger: false
+  - get: sources
+    trigger: false
   - task: deploy
     file: sources/pipeline/deploy.yml
+
