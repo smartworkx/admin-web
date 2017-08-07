@@ -11,6 +11,7 @@ image_resource:
 
 inputs:
   - name: sources
+  - name: admin-web-image
 
 run:
   path: sources/pipeline/deploy.sh
