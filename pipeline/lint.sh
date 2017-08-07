@@ -1,4 +1,4 @@
 #!/bin/sh
 cd sources
-npm install
+yarn install
 npm run lint

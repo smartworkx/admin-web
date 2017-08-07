@@ -1,5 +1,6 @@
 #!/bin/sh
+echo "Building dist"
 cd sources
-npm install
+yarn install
 npm run deploy:prod
 cp ./dist/* ../dist
