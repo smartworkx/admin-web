@@ -13,12 +13,6 @@ resources:
       password: {{docker_pass}}
 
 jobs:
-- name: test
-  plan:
-  - get: sources
-    trigger: true
-  - task: lint
-    file: sources/pipeline/lint.yml
 - name: build
   plan:
   - get: sources
