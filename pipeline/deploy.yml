@@ -13,5 +13,8 @@ inputs:
   - name: sources
   - name: admin-web-image
 
+outputs:
+  - name: deploy
+
 run:
   path: sources/pipeline/deploy.sh

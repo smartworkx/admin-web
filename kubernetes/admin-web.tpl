@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: admin-web
-        image: smartworkx/admin-web
+        image: smartworkx/admin-web:ADMIN_WEB_IMAGE_TAG
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
