@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ADMIN_WEB_IMAGE_TAG=$(cat admin-web-image/tag)
+ADMIN_WEB_IMAGE_TAG=$(jq '.kubernetes.deployments[] | select(.id=="admin-web")' ./cmdb/environments/staging.json)
 echo "deploy $ADMIN_WEB_IMAGE_TAG"
 gcloud auth activate-service-account --key-file /tmp/service-account.json
 gcloud config set project smartworkx-173909

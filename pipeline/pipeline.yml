@@ -4,6 +4,11 @@ resources:
     source:
       uri: https://github.com/joris77/admin-web.git
       branch: master
+  - name: cmdb
+    type: git
+    source:
+      uri: https://github.com/smartworkx/cmdb.git
+      branch: master
   - name: admin-web-image
     type: docker-image
     source:
@@ -29,6 +34,8 @@ jobs:
     trigger: false
   - get: sources
     trigger: false
+  - get: cmdb
+    trigger: true
   - task: deploy
     file: sources/pipeline/deploy.yml
 
