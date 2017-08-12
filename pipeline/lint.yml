@@ -11,4 +11,4 @@ inputs:
 run:
   path: sources/pipeline/lint.sh
 caches:
-  - path: sources/node_modules
+- path: sources/node_modules
