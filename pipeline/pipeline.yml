@@ -22,6 +22,8 @@ jobs:
   plan:
   - get: sources
     trigger: true
+  - task: lint
+    file: sources/pipeline/lint.yml
   - task: dist
     file: sources/pipeline/dist.yml
   - task: prepare-build
