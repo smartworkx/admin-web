@@ -2,4 +2,4 @@
 cp sources/Dockerfile build/
 mkdir build/dist
 cp dist/* build/dist
-date +"%Y%M%d%H%M" > build/tag
+date +"%Y%m%d%H%M%S" > build/tag
