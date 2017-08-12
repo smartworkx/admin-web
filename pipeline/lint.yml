@@ -10,9 +10,6 @@ image_resource:
 inputs:
   - name: sources
 
-caches:
-  - path: sources/node_modules
-  
 run:
   path: sources/pipeline/lint.sh
 
