@@ -4,10 +4,10 @@ resources:
     source:
       uri: https://github.com/joris77/admin-web.git
       branch: master
-  - name: cmdb
+  - name: staging
     type: git
     source:
-      uri: https://github.com/smartworkx/cmdb.git
+      uri: https://github.com/smartworkx/staging.git
       branch: master
   - name: admin-web-image
     type: docker-image
@@ -34,8 +34,8 @@ jobs:
     trigger: false
   - get: sources
     trigger: false
-  - get: cmdb
+  - get: staging
     trigger: true
   - task: deploy
-    file: sources/pipeline/deploy.yml
+    file: sources/pipeline/deploy-to-staging.yml
 

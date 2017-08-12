@@ -12,7 +12,7 @@ image_resource:
 inputs:
   - name: sources
   - name: admin-web-image
-  - name: cmdb
+  - name: staging
 
 outputs:
   - name: deploy
