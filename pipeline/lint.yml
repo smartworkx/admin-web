@@ -6,9 +6,13 @@ image_resource:
   source:
     repository: node
     tag: 8
+    
 inputs:
   - name: sources
-run:
-  path: sources/pipeline/lint.sh
+
 caches:
 - path: sources/node_modules
+
+run:
+  path: sources/pipeline/lint.sh
+
