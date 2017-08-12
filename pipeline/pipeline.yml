@@ -2,7 +2,7 @@ resources:
   - name: sources
     type: git
     source:
-      uri: https://github.com/joris77/admin-web.git
+      uri: https://github.com/smartworkx/admin-web.git
       branch: master
   - name: staging
     type: git
