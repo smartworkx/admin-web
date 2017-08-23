@@ -15,7 +15,7 @@ export const upload = (file) => {
   return {
     types: [UPLOAD_START, UPLOAD_FINISHED_SUCCESSFUL, UPLOAD_FINISHED_ERROR],
     successMessage: 'File was successfully uploaded',
-    callAPI: (headers) => fetch('http://localhost:8080/bank-file-uploads',
+    callAPI: (headers) => fetch('/api/bank-file-uploads',
       {
         method: 'POST',
         body: data,

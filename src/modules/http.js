@@ -25,4 +25,4 @@ export const objectToQueryParams = (object) => {
   return queryParams(objectToQuery(object))
 }
 
-export const BASE_PATH = 'http://localhost:8080/'
+export const BASE_PATH = '/api/'
