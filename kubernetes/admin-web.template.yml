@@ -39,12 +39,12 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: admin-web-ingress
+  name: admin-ingress
 spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: admin-web
           servicePort: 80
