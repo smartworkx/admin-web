@@ -13,8 +13,8 @@ module.exports = {
     proxy: {
       enabled: true,
       options: {
-        host: 'http://falcon-local',
-        match: /^\/api\/.*/
+        host: 'http://localhost:8080',
+        match: /^\/admin-api\/.*/
       }
     }
   }),
