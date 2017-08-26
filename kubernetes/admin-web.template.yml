@@ -44,13 +44,13 @@ spec:
   rules:
   - http:
       paths:
-      - path: /admin-web/*
+      - path: /admin-web
         backend:
           serviceName: admin-web
           servicePort: 80
   - http:
         paths:
-        - path: /admin-api/*
+        - path: /admin-api
           backend:
             serviceName: admin-api
             servicePort: 8080
