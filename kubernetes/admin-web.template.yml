@@ -33,10 +33,5 @@ spec:
       - name: admin-web
         image: smartworkx/admin-web:ADMIN_WEB_IMAGE_TAG
         imagePullPolicy: IfNotPresent
-        readinessProbe:
-          httpGet:
-            path: /admin-web/
-            port: 80
-          initialDelaySeconds: 30
         ports:
         - containerPort: 80
