@@ -1,7 +1,11 @@
+import {BASE_PATH} from 'modules/http'
+
 export const UPLOAD_FILE_SELECTED = '@@UploadBankStatements/UPLOAD_FILE_SELECTED'
 export const UPLOAD_FINISHED_SUCCESSFUL = '@@UploadBankStatements/UPLOAD_FINISHED_SUCCESSFUL'
 export const UPLOAD_FINISHED_ERROR = '@@UploadBankStatements/UPLOAD_FINISHED_ERROR'
 export const UPLOAD_START = '@@UploadBankStatements/UPLOAD_START'
+
+
 
 export const handleFileSelect = (file) => {
   return {
@@ -15,7 +19,7 @@ export const upload = (file) => {
   return {
     types: [UPLOAD_START, UPLOAD_FINISHED_SUCCESSFUL, UPLOAD_FINISHED_ERROR],
     successMessage: 'File was successfully uploaded',
-    callAPI: (headers) => fetch('/api/bank-file-uploads',
+    callAPI: (headers) => fetch(BASE_PATH + 'bank-file-uploads',
       {
         method: 'POST',
         body: data,

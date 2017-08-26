@@ -25,4 +25,4 @@ export const objectToQueryParams = (object) => {
   return queryParams(objectToQuery(object))
 }
 
-export const BASE_PATH = '/api/'
+export const BASE_PATH = '/admin-api/'
