@@ -1,11 +1,9 @@
-import {BASE_PATH} from 'modules/http'
+import { BASE_PATH } from 'modules/http'
 
 export const UPLOAD_FILE_SELECTED = '@@UploadBankStatements/UPLOAD_FILE_SELECTED'
 export const UPLOAD_FINISHED_SUCCESSFUL = '@@UploadBankStatements/UPLOAD_FINISHED_SUCCESSFUL'
 export const UPLOAD_FINISHED_ERROR = '@@UploadBankStatements/UPLOAD_FINISHED_ERROR'
 export const UPLOAD_START = '@@UploadBankStatements/UPLOAD_START'
-
-
 
 export const handleFileSelect = (file) => {
   return {
