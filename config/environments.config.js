@@ -13,8 +13,8 @@ module.exports = {
     proxy: {
       enabled: true,
       options: {
-        host: 'http://localhost:8080',
-        match: /^\/admin-api\/.*/
+        host: 'http://localhost:8080/',
+        match: /^\/admin\-api\/.*/
       }
     }
   }),
