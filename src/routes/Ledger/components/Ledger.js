@@ -1,30 +1,39 @@
-import React from 'react'
-import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
+import React, {Component} from 'react'
+import {Table, TableCell, TableHead, TableRow} from 'react-toolbox'
 
-const Ledger = (props) => {
-  return <div>
-    <h1>Ledger</h1>
-    <Table selectable={false}>
-      <TableHead>
-        <TableCell>Value date</TableCell>
-        <TableCell>Ledger</TableCell>
-        <TableCell>Debit</TableCell>
-        <TableCell>Credit</TableCell>
-      </TableHead>
-      {props.ledgerLines.map(item => {
-        return (
-          <TableRow
-            key={item.id}
-          >
-            <TableCell>{item.valueDate}</TableCell>
-            <TableCell>{item.ledger}</TableCell>
-            <TableCell>{item.debitAmount}</TableCell>
-            <TableCell>{item.creditAmount}</TableCell>
-          </TableRow>
-        )
-      })}
-    </Table>
-  </div>
+class Ledger extends Component {
+
+  constructor(props) {
+    super(props)
+    const {createLedger} = props
+    createLedger()
+  }
+
+  render = () => {
+    return <div>
+      <h1>Ledger</h1>
+      <Table selectable={false}>
+        <TableHead>
+          <TableCell>Code</TableCell>
+          <TableCell>Name</TableCell>
+          <TableCell>Balance</TableCell>
+          <TableCell>Profit and loss</TableCell>
+        </TableHead>
+        {this.props.ledgerLines.map(item => {
+          return (
+            <TableRow
+              key={item.id}
+            >
+              <TableCell>{item.code}</TableCell>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.balanceHeading}</TableCell>
+              <TableCell>{item.profitAndLossHeading}</TableCell>
+            </TableRow>
+          )
+        })}
+      </Table>
+    </div>
+  }
 }
 
 export default Ledger

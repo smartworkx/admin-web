@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import { actions } from '../modules/ledger'
+import {connect} from 'react-redux'
+import {actions, ledgerLinesSelector} from '../modules/ledger'
 import Ledger from '../components/Ledger'
 
 const mapDispatchToProps = {
@@ -7,7 +7,10 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => {
-  return state.ledger
+  return {
+    ...state.ledger,
+    ledgerLines: ledgerLinesSelector(state)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ledger)
