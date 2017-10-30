@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
+import React, {Component} from 'react'
+import {Table, TableCell, TableHead, TableRow} from 'react-toolbox'
 import VatDeclarationForm from 'forms/VatDeclarationForm'
 
 class VatDeclarations extends Component {
@@ -18,6 +18,7 @@ class VatDeclarations extends Component {
         <TableHead>
           <TableCell>Period</TableCell>
           <TableCell>Creation date</TableCell>
+          <TableCell>Turnover</TableCell>
           <TableCell>Vat serviced</TableCell>
           <TableCell>Vat deducted</TableCell>
           <TableCell>Number of journal entries</TableCell>
@@ -29,6 +30,7 @@ class VatDeclarations extends Component {
             >
               <TableCell>{item.period.year + ' - ' + item.period.quarter}</TableCell>
               <TableCell>{item.creationDateTime}</TableCell>
+              <TableCell>{item.turnoverHigh ? item.turnoverHigh.value : ''}</TableCell>
               <TableCell>{item.vatServicedAmount.value}</TableCell>
               <TableCell>{item.vatDeductedAmount.value}</TableCell>
               <TableCell>{item.journalEntries.length}</TableCell>
