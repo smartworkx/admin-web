@@ -1,11 +1,13 @@
-import { connect } from 'react-redux'
-import { actions, getLines } from '../modules/balanceDetails'
+import {connect} from 'react-redux'
+import {actions} from '../modules/balanceDetails'
 import BalanceDetails from '../components/BalanceDetails'
-import { fetchOne } from 'modules/entities/balanceDetails'
+import {fetchOne, getCurrentEntity, getLines} from 'modules/entities/balanceDetails'
+import {create} from 'modules/entities/balanceCreationRequestedEvents'
 
 const mapDispatchToProps = {
   ...actions,
-  fetchOne
+  fetchOne,
+  create
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,10 +15,27 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.routeParams.id
   return {
     ...routeState,
-    details: routeState.details,
-    lines: getLines(routeState),
-    id
+    details: getCurrentEntity(state),
+    lines: getLines(state),
+    id,
+    isPersisted: id && id !== 'request'
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceDetails)
+const mergeProps = (stateProps, dispatchProps,ownProps) => {
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    save: () => dispatchProps.save(stateProps.details),
+    init: () => {
+      if (stateProps.isPersisted) {
+        dispatchProps.fetchOne(stateProps.id)
+      } else {
+        dispatchProps.create({values: ownProps.location.query})
+      }
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(BalanceDetails)

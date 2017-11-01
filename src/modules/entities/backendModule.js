@@ -1,8 +1,8 @@
 import 'whatwg-fetch'
-import { removeTime } from 'modules/date'
-import { camelCaseToDashes } from 'modules/strings'
-import { addOrReplace } from 'modules/arrays'
-import { objectToQueryParams, BASE_PATH } from 'modules/http'
+import {removeTime} from 'modules/date'
+import {camelCaseToDashes} from 'modules/strings'
+import {addOrReplace} from 'modules/arrays'
+import {BASE_PATH, objectToQueryParams} from 'modules/http'
 
 export const createBackendModule = (entityName, props) => {
   const SUCCESS_FETCH = '@@' + entityName + '/SUCCESS_FETCH'
@@ -23,7 +23,7 @@ export const createBackendModule = (entityName, props) => {
       const query = props ? objectToQueryParams(props.defaultFetchParams) : ''
       return dispatch({
         types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
-        callAPI: (headers) => fetch(BASE_PATH + path + query, { headers })
+        callAPI: (headers) => fetch(BASE_PATH + path + query, {headers})
       })
     }
   }
@@ -32,12 +32,12 @@ export const createBackendModule = (entityName, props) => {
     return (dispatch) => {
       return dispatch({
         types: [START_FETCH_ONE, SUCCESS_FETCH_ONE, ERROR_FETCH_ONE],
-        callAPI: (headers) => fetch(BASE_PATH + path + '/' + id, { headers })
+        callAPI: (headers) => fetch(BASE_PATH + path + '/' + id, {headers})
       })
     }
   }
 
-  const createActionCreator = ({ values, successMessage }) => {
+  const createActionCreator = ({values, successMessage}) => {
     return (dispatch) => {
       let promise = dispatch({
         types: [START_CREATE, SUCCESS_CREATE, ERROR_CREATE],
@@ -74,25 +74,36 @@ export const createBackendModule = (entityName, props) => {
       return {
         json: action.json,
         data: getDataFromHalResponse(action.json, entityName),
-        initialized: true
       }
     },
     [SUCCESS_FETCH_ONE]: (state, action) => {
       return {
-        json: action.json,
+        ...state,
+        current: action.json,
         data: addOrReplace(state.data, action.json),
-        initialized: true
       }
     }
   }
 
   const reducer = (state = {
-    initialized: false,
+    current: null,
     data: []
   }, action) => {
     const handler = ACTION_HANDLERS[action.type]
 
     return handler ? handler(state, action) : state
+  }
+
+  const getEntityState = (state) => {
+    return state.entities[entityName]
+  }
+
+  const getCurrent = (state) => {
+    return getEntityState(state).current
+  }
+
+  const getEntities = (state) => {
+    return getEntityState(state).data
   }
 
   return {
@@ -109,7 +120,10 @@ export const createBackendModule = (entityName, props) => {
     reducer,
     fetchActionCreator,
     fetchOneActionCreator,
-    createActionCreator
+    createActionCreator,
+    getEntityState,
+    getCurrentEntity: getCurrent,
+    getEntities
   }
 }
 
