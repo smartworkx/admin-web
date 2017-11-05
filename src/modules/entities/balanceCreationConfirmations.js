@@ -1,7 +1,6 @@
 import {createBackendModule} from './backendModule'
 
-
-export const ENTITY_NAME = 'balanceCreationRequestedEvents'
+export const ENTITY_NAME = 'balanceCreationConfirmations'
 
 const module = createBackendModule(ENTITY_NAME)
 

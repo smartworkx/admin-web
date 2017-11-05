@@ -1,6 +1,6 @@
 import {createBackendModule} from './backendModule'
 import {addOrReplace} from 'modules/arrays'
-import {SUCCESS_CREATE as BALANCE_SUCCESS_CREATE} from './balanceCreationRequestedEvents'
+import {SUCCESS_CREATE as BALANCE_SUCCESS_CREATE} from './balanceCreationRequests'
 
 const module = createBackendModule('balanceDetails')
 

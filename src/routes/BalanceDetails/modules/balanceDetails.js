@@ -1,11 +1,11 @@
-import {create, SUCCESS_CREATE as SUCCESS_CREATE_SAVE} from 'modules/entities/balanceSavedEvents'
+import {create, SUCCESS_CREATE as SUCCESS_CREATE_SAVE} from 'modules/entities/balanceCreationConfirmations'
+import browserHistory from 'react-router/lib/browserHistory'
 
-
-const save = (event) => {
+const save = (command) => {
   return (dispatch) => {
-    return dispatch(create(
-      event
-    )).then(action => {
+    return dispatch(create({
+      values: command
+    })).then(action => {
       if (action.type === SUCCESS_CREATE_SAVE) {
         browserHistory.push('/balances')
       }
