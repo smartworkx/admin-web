@@ -18,13 +18,25 @@ export const createBackendModule = (entityName, props) => {
   const extraPath = props && props.extraPath ? props.extraPath : ''
   const path = camelCaseToDashes(entityName) + extraPath
 
-  const fetchActionCreator = () => {
-    return (dispatch) => {
-      const query = props ? objectToQueryParams(props.defaultFetchParams) : ''
-      return dispatch({
-        types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
-        callAPI: (headers) => fetch(BASE_PATH + path + query, {headers})
-      })
+  const fetchActionCreator = (searchCriteria) => {
+    let sort, filterCriteria, size = null
+    if (props) {
+      size = props.size
+      filterCriteria = props.filterCriteria
+      sort = props.sorting
+    }
+    if (searchCriteria) {
+      sort = searchCriteria.sorting || sort
+      filterCriteria = searchCriteria.filterCriteria || filterCriteria
+    }
+    const query = objectToQueryParams({
+      sort,
+      size,
+      ...filterCriteria
+    })
+    return {
+      types: [START_FETCH, SUCCESS_FETCH, ERROR_FETCH],
+      callAPI: (headers) => fetch(BASE_PATH + path + query, {headers})
     }
   }
 

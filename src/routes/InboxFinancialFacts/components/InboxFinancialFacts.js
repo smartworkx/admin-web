@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { Button, Table, TableCell, TableHead, TableRow, Dialog } from 'react-toolbox'
+import React, {Component} from 'react'
+import {Button, Dialog, Table, TableCell, TableHead, TableRow} from 'react-toolbox'
 import JournalEntryForm from 'forms/JournalEntryForm'
 import classes from './InboxFinancialFacts.scss'
 import FinancialFactForm from 'forms/FinancialFactForm'
 
 class InboxFinancialFacts extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
-    const { fetchInboxFinancialFacts, fetchLedgers } = props
+    const {fetchInboxFinancialFacts, fetchLedgers} = props
     fetchInboxFinancialFacts()
     fetchLedgers()
   }
 
-  render () {
+  render() {
     return <div>
       <div className={classes.titleLine}>
         <h1 className={classes.pageTitle}>Inbox</h1>
@@ -95,9 +95,11 @@ class InboxFinancialFacts extends Component {
               <TableCell>{financialFact.amount.value}</TableCell>
               <TableCell>{financialFact.amount.currency}</TableCell>
               <TableCell>{financialFact.debitCredit}</TableCell>
-              <TableCell className={classes.journalEntriesCell}><JournalEntryForm form={'journalEntryForFinancialFact' + financialFact.id}
-                initialValues={{ financialFactId: financialFact.id, records: item.records }}
-                enableReinitialize /></TableCell>
+              <TableCell className={classes.journalEntriesCell}>
+                <JournalEntryForm form={'journalEntryForFinancialFact' + financialFact.id}
+                                  initialValues={{financialFactId: financialFact.id, records: item.records}}
+                                  enableReinitialize />
+              </TableCell>
             </TableRow>
           )
         })}

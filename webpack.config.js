@@ -55,23 +55,35 @@ module.exports = {
         use: [{
           loader: "style-loader" // creates style nodes from JS strings
         }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader" // compiles Sass to CSS
-        }]
+          loader: 'css-loader',
+          options: {
+            modules: true, // https://github.com/react-toolbox/react-toolbox/issues/1278
+            sourceMap: true,
+            importLoaders: 1,
+            localIdentName: "[name]--[local]--[hash:base64:8]"
+          }
+        },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }]
       },
       {
         test: /\.css$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
-              modules: true // https://github.com/react-toolbox/react-toolbox/issues/1278
+              modules: true, // https://github.com/react-toolbox/react-toolbox/issues/1278
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: "[path]-[name]--[local]--[hash:base64:8]"
             }
-          }
+          },
+          'postcss-loader'
         ]
       }
     ]
