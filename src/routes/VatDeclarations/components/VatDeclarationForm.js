@@ -15,20 +15,27 @@ const VatDeclarationForm = (props) => {
 
   return (
     <div className={classes.form}>
-      <form onSubmit={handleSubmit}>
+      <form >
         <div className={classes.field}>
           <Field name='year' label='Year' component={dropdown} source={lodash.range(2015, 2101)} />
         </div>
         <div className={classes.field}>
           <Field name='quarter' label='Quarter' component={dropdown} source={lodash.range(1, 5)} />
         </div>
-        <Button type='submit' disabled={pristine || submitting} className={classes.button}>Create</Button>
+        <Button onClick={handleSubmit(values =>
+          props.onSubmit({
+            ...values,
+            action: 'show'
+          }))} type='submit' disabled={pristine || submitting} className={classes.button}>Show</Button>
+        <Button onClick={handleSubmit(values =>
+          props.onSubmit({
+            ...values,
+            action: 'save'
+          }))} type='submit' disabled={pristine || submitting} className={classes.button}>Create</Button>
       </form>
     </div>
   )
 }
-
-
 
 export default VatDeclarationForm
 

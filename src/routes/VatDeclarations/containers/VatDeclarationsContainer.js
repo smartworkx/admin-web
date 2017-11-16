@@ -1,8 +1,8 @@
-import { connect } from 'react-redux'
-import { actions } from '../modules/vatDeclarations'
-import { fetch } from 'modules/entities/vatDeclarations'
+import {connect} from 'react-redux'
+import {actions} from '../modules/vatDeclarations'
+import {fetch} from 'modules/entities/vatDeclarations'
 import VatDeclarations from '../components/VatDeclarations'
-import { getEntities } from 'modules/entities'
+import {getEntities} from 'modules/entities'
 
 const mapDispatchToProps = {
   ...actions,
@@ -11,7 +11,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    data: getEntities(state, 'vatDeclarations')
+    ...state.vatDeclarations,
+    data: getEntities(state, 'vatDeclarations'),
   }
 }
 
