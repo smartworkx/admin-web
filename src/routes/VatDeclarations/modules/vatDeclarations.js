@@ -1,5 +1,16 @@
+import {create} from 'modules/entities/vatDeclarationCreatedEvents'
+
+const onSubmit = (values) => {
+  return create({
+    values
+  })
+}
 
 export const actions = {
+}
+
+export const formActions = {
+  onSubmit
 }
 
 // ------------------------------------

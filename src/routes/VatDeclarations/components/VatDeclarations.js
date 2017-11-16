@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Table, TableCell, TableHead, TableRow} from 'react-toolbox'
-import VatDeclarationForm from 'forms/VatDeclarationForm'
+import VatDeclarationForm from '../containers/VatDeclarationFormContainer'
 
 class VatDeclarations extends Component {
 

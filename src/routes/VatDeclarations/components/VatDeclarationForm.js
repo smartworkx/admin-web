@@ -1,17 +1,10 @@
 import React from 'react'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Button } from 'react-toolbox'
-import { create } from 'modules/entities/vatDeclarationCreatedEvents'
+import {Field} from 'redux-form'
+import {Button} from 'react-toolbox'
 import classes from './VatDeclarationForm.scss'
-import { dropdown } from './Fields'
+import {dropdown} from 'forms/Fields'
 import lodash from 'lodash'
 
-const validate = (values) => {
-  const errors = {}
-  return errors
-}
 
 const VatDeclarationForm = (props) => {
   const {
@@ -35,23 +28,7 @@ const VatDeclarationForm = (props) => {
   )
 }
 
-const onSubmit = (values) => {
-  return create({
-    values
-  })
-}
 
-const mapDispatchToProps = {
-  onSubmit
-}
 
-const mapStateToProps = (state) => {
-  return {}
-}
+export default VatDeclarationForm
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  reduxForm({
-    form: 'VatDeclarationForm',
-    validate
-  }))(VatDeclarationForm)
