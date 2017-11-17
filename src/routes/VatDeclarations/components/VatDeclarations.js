@@ -11,8 +11,8 @@ class VatDeclarations extends Component {
   }
 
   render() {
-    const {notPeristedData} = this.props
-    const notPersistedDataTable = notPeristedData ? <VatDeclarationTable data={this.props.notPersistedData} /> : null
+    const {notPersistedData} = this.props
+    const notPersistedDataTable = notPersistedData ? <VatDeclarationTable data={notPersistedData} /> : null
     return <div>
       <h1>Value added tax declarations</h1>
       <VatDeclarationForm />

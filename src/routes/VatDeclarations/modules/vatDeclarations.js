@@ -25,6 +25,9 @@ export const formActions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [VACR_SUCCESS_CREATE]: (state, action) => {
+    const vatDeclaration = action.json
+    // Create fake id so add or replace works correctly
+    vatDeclaration.id = vatDeclaration.period.year + vatDeclaration.period.quarter
     return {
       ...state,
       notPersistedData: addOrReplace(state.notPersistedData, action.json),
