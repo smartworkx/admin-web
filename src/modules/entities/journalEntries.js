@@ -1,6 +1,6 @@
 import {createBackendModule} from './backendModule'
 
-const module = createBackendModule('journalEntries', { sorting: ['valueDate', 'desc'], size:200 })
+const module = createBackendModule('journalEntries', { sorting: ['valueDate', 'asc'], size:200 })
 
 export const search = module.fetchActionCreator
 
