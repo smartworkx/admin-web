@@ -29,11 +29,10 @@ export const getLines = (routeState, ledgers) => {
   if (details && details.headings.length > 0 && ledgers && ledgers.length > 0) {
     sortByDebitCredit(details.headings).forEach((heading) => {
       lines.push(createLine(heading, heading.debitCredit, 'HEADING'))
-      const recordsGroupedByLedger = groupBy(heading.records, 'ledgerId')
-      recordsGroupedByLedger.forEach((value, key) => {
+      heading.accounts.forEach((account) => {
         lines.push(createLine({
-          name: ledgers.find((ledger) => ledger.id === key).name,
-          amount: { value: value.map(record => record.amount.value).reduce((accumulator, currentValue) => accumulator + currentValue, 0) }
+          name: ledgers.find((ledger) => ledger.id === account.ledgerId).name,
+          amount: account.amount
         }, heading.debitCredit, 'LEDGER'))
       })
     })
