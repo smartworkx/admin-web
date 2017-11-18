@@ -1,17 +1,22 @@
-import React, { Component } from 'react'
-import { Table, TableCell, TableHead, TableRow } from 'react-toolbox'
+import React, {Component} from 'react'
+import {Table, TableCell, TableHead, TableRow} from 'react-toolbox'
+
+import JournalSearchCriteriaForm from '../containers/JournalSearchFormContainer'
 
 class Journal extends Component {
 
   constructor (props) {
     super(props)
-    const { createJournal } = props
-    createJournal()
+    const { initSearch, fetchLedgers } = props
+    fetchLedgers()
+    initSearch()
   }
 
   render () {
+    const { searchFormProps, sortProps, paginationProps, searchTableProps } = this.props
     return <div>
       <h1>Journal</h1>
+      <JournalSearchCriteriaForm {...searchFormProps} />
       <Table selectable={false}>
         <TableHead>
           <TableCell>Value date</TableCell>
@@ -19,7 +24,7 @@ class Journal extends Component {
           <TableCell>Debit</TableCell>
           <TableCell>Credit</TableCell>
         </TableHead>
-        {this.props.journalLines.map(item => {
+        {searchTableProps.data.map(item => {
           return (
             <TableRow
               key={item.id}

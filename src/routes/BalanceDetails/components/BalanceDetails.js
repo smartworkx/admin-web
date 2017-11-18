@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import { Table, TableCell, TableRow } from 'react-toolbox'
+import React, {Component} from 'react'
+import {Button, Table, TableCell, TableRow} from 'react-toolbox'
 
 class BalanceDetails extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
-    if (props.id) {
-      props.fetchOne(props.id)
-    }
+    props.init()
   }
 
-  render () {
-    const { details, lines } = this.props
+  render() {
+    const {details, lines, isPersisted, save} = this.props
     let content = null
     if (details) {
+      const saveButton = isPersisted ? null : <Button onClick={save}>Save</Button>
       content = <span>
         <div>{details.date}</div>
         <div>{details.description}</div>
+        {saveButton}
         <Table selectable={false}>
           {lines.map(line => {
             const name = line.type === 'HEADING' ? <b>{line.name}</b> : line.name
@@ -26,7 +26,7 @@ class BalanceDetails extends Component {
               <TableCell>{line.creditAmount}</TableCell>
             </TableRow>
           })}
-        )}
+          )}
         </Table>
       </span>
     }

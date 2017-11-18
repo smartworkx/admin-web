@@ -1,12 +1,13 @@
 import React from 'react'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { text } from 'forms/Fields'
-import { Button } from 'react-toolbox'
-import { browserHistory } from 'react-router'
+import {compose} from 'redux'
+import {connect} from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+import {text} from 'forms/Fields'
+import {Button} from 'react-toolbox'
+import {browserHistory} from 'react-router'
 import classes from './BalanceCreationForm.scss'
-import { create, SUCCESS_CREATE } from 'modules/entities/balanceCreationRequestedEvents'
+import {objectToQueryParams} from 'modules/http'
+
 
 const BalanceCreationForm = (props) => {
   const {
@@ -32,15 +33,10 @@ const validate = (values) => {
 }
 
 const onSubmit = (values) => {
-  return (dispatch) => {
-    return dispatch(create({
-      values
-    })).then(action => {
-      if (action.type === SUCCESS_CREATE) {
-        browserHistory.push('/balances/request')
-      }
-    })
-  }
+  browserHistory.push({
+  pathname:  '/balances/request',
+    search: `${objectToQueryParams(values)}`
+  })
 }
 
 const mapDispatchToProps = {
