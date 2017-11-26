@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import { browserHistory, Router } from 'react-router'
-import { Provider } from 'react-redux'
+import { connect, Provider } from 'react-redux'
 import { initSecurity } from 'modules/security'
 
-class AppContainer extends Component
 
-{
-
-  shouldComponentUpdate () {
-    return false
-  }
+class AppContainer extends Component{
 
   componentWillMount() {
-    //initSecurity()
+    const {store} = this.props
+    store.dispatch(initSecurity())
   }
 
   render () {
@@ -21,11 +17,17 @@ class AppContainer extends Component
     return (
       <Provider store={store}>
         <div style={{ height: '100%' }}>
-          <Router history={browserHistory} children={routes} />
+          {this.props.securityIsInited ? <Router history={browserHistory} children={routes} /> : null}
         </div>
       </Provider>
     )
   }
 }
 
-export default AppContainer
+const mapDispatchToProps = {}
+
+const mapStateToProps = (state) => ({
+  securityIsInited: state.security.token !== undefined
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)

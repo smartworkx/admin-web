@@ -4,6 +4,7 @@ import locationReducer from './location'
 import entities from 'modules/entities'
 import autocomplete from 'modules/autocomplete'
 import { globalMessageReducer as globalMessage } from 'components/GlobalMessage'
+import security from 'modules/security'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -12,6 +13,7 @@ export const makeRootReducer = (asyncReducers) => {
     form,
     globalMessage,
     autocomplete,
+    security,
     ...asyncReducers
   })
 }

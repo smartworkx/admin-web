@@ -38,6 +38,7 @@ module.exports = {
       }
     },
     hot: true,
+    disableHostCheck: true,
     historyApiFallback: true
   },
   module: {
