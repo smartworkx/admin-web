@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
+    "start:no-security": "__NO_SECURITY__=true webpack-dev-server",
     "watch": "webpack --watch",
     "server": "node server.js",
     "build": "webpack"

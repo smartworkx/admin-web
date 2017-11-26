@@ -3,6 +3,7 @@ import {showErrorMessage} from '../components/GlobalMessage'
 
 let keycloak
 
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -22,21 +23,25 @@ const initSecuritySuccess = (authenticated, token) => {
 }
 
 export const initSecurity = () => {
-  return function (dispatch) {
-    if (!keycloak) {
-      keycloak = Keycloak({
-        realm: 'admin',
-        url: location.protocol + '//' + location.host + '/auth',
-        clientId: 'admin-web'
-      })
-      keycloak.init({
-        onLoad: 'login-required'
-      }).success(function (authenticated) {
-        console.log(`Authenticated = ${authenticated}`)
-        dispatch(initSecuritySuccess(authenticated, keycloak.token))
-      }).error(function () {
-        dispatch(showErrorMessage('Error logging in'))
-      })
+  if (__NO_SECURITY__) {
+    return initSecuritySuccess(true, 'fake_token')
+  } else {
+    return function (dispatch) {
+      if (!keycloak) {
+        keycloak = Keycloak({
+          realm: 'admin',
+          url: location.protocol + '//' + location.host + '/auth',
+          clientId: 'admin-web'
+        })
+        keycloak.init({
+          onLoad: 'login-required'
+        }).success(function (authenticated) {
+          console.log(`Authenticated = ${authenticated}`)
+          dispatch(initSecuritySuccess(authenticated, keycloak.token))
+        }).error(function () {
+          dispatch(showErrorMessage('Error logging in'))
+        })
+      }
     }
   }
 }
@@ -53,24 +58,35 @@ export const login = () => {
 }
 
 window.fetchBearerToken = () => {
-  return new Promise((resolve, reject) => {
-    keycloak.updateToken().success(() => resolve(keycloak.token)).error(() => reject())
-  })
+  if (__NO_SECURITY__) {
+    return Promise.resolve('fake-token')
+  } else {
+    return new Promise((resolve, reject) => {
+      keycloak.updateToken().success(() => resolve(keycloak.token)).error(() => reject())
+    })
+  }
 }
 
 export const updateToken = () => {
-  return function (dispatch) {
-    const promise = new Promise((resolve, reject) => {
-      keycloak.updateToken().success(() => resolve()).error(() => reject())
-    }).then(
-      () => {
-        dispatch(updateTokenSuccess())
-      },
-      () => {
-        login()
-      }
-    )
-    return promise
+  if (__NO_SECURITY__) {
+    return function (dispatch) {
+      dispatch(updateTokenSuccess('fake_token'))
+      return Promise.resolve()
+    }
+  } else {
+    return function (dispatch) {
+      const promise = new Promise((resolve, reject) => {
+        keycloak.updateToken().success(() => resolve()).error(() => reject())
+      }).then(
+        () => {
+          dispatch(updateTokenSuccess())
+        },
+        () => {
+          login()
+        }
+      )
+      return promise
+    }
   }
 }
 

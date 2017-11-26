@@ -8,7 +8,8 @@ module.exports = {
   entry: './src/main.js',
   plugins: [
     new webpack.DefinePlugin({
-      __DEV__: JSON.stringify(true)
+      __DEV__: JSON.stringify(true),
+      __NO_SECURITY__: process.env.__NO_SECURITY__
     }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
