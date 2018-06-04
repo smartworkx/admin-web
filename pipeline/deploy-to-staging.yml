@@ -7,7 +7,7 @@ image_resource:
     repository: smartworkx/gcloud-alpine
     email: joris@smartworkx.nl
     username: smartworkx
-    password: j4UNXqMlNoj7j62STXFB
+    password: 
 
 inputs:
   - name: sources
